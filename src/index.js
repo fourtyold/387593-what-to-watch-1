@@ -1,12 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/app.jsx";
+import App from "./components/app/app.jsx";
 
 const init = () => {
-  const moviesList = [`Fantastic Beasts: The Crimes of Grindelwald`, `Bohemian Rhapsody`, `Macbeth`, `Aviator`];
+  const options = {
+    moviesList: [`Fantastic Beasts: The Crimes of Grindelwald`, `Bohemian Rhapsody`, `Macbeth`, `Aviator`],
+    cardHeaderClickHandler: () => {}
+  };
   ReactDOM.render(
       <App
-        moviesList = {moviesList}
+        moviesList = {options.moviesList}
+        cardHeaderClickHandler = {options.cardHeaderClickHandler}
       />,
       document.querySelector(`#root`)
   );
