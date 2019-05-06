@@ -5,14 +5,18 @@ import App from "./app.jsx";
 
 Enzyme.configure({adapter: new Adapter()});
 
+const options = {
+  moviesList: [`test_1`, `test_2`, `test_3`, `test_4`],
+  testClickHandler: jest.fn()
+};
+
 it(`Click on card header works correctly`, () => {
-  const testClickHandler = jest.fn();
   const app = shallow(<App
-    moviesList = {[`test_1`, `test_2`, `test_3`, `test_4`]}
-    cardHeaderClickHandler = {testClickHandler}
+    moviesList = {options.moviesList}
+    cardHeaderClickHandler = {options.testClickHandler}
   />);
 
   const cardHeader = app.find(`.small-movie-card__title`);
   cardHeader.at(0).simulate(`click`);
-  expect(testClickHandler).toHaveBeenCalledTimes(1);
+  expect(options.testClickHandler).toHaveBeenCalledTimes(1);
 });
