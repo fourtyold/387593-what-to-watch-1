@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 
 const App = (props) => {
-  const {moviesList} = props;
+  const {moviesList, cardHeaderClickHandler} = props;
   return (
     <Fragment>
       <div className="visually-hidden">
@@ -131,7 +131,7 @@ const App = (props) => {
                 <div className="small-movie-card__image">
                   <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt={name} width="280" height="175" />
                 </div>
-                <h3 className="small-movie-card__title">
+                <h3 className="small-movie-card__title" onClick={cardHeaderClickHandler}>
                   <a className="small-movie-card__link" href="movie-page.html">{name}</a>
                 </h3>
               </article>;
@@ -162,7 +162,8 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  moviesList: PropTypes.array.isRequired
+  moviesList: PropTypes.array.isRequired,
+  cardHeaderClickHandler: PropTypes.func.isRequired
 };
 
 export default App;
