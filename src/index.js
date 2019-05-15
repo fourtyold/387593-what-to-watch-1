@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
+import films from "./mocks/films.js";
 
-const init = () => {
+const init = (dataArray) => {
   const options = {
-    moviesList: [`Fantastic Beasts: The Crimes of Grindelwald`, `Bohemian Rhapsody`, `Macbeth`, `Aviator`],
+    moviesList: dataArray,
     cardHeaderClickHandler: () => {}
   };
   ReactDOM.render(
@@ -16,4 +17,4 @@ const init = () => {
   );
 };
 
-init();
+init(films);

@@ -1,9 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import FilmsList from "./films-list.jsx";
 
 const options = {
-  moviesList: [
+  films: [
     {
       img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
       name: `Fantastic Beasts: The Crimes of Grindelwald`
@@ -25,14 +25,14 @@ const options = {
       name: `We need to talk about Kevin`
     }
   ],
-  testClickHandler: () => {}
+  onHeaderClickHandler: () => {}
 };
 
-it(`App correctly renders`, () => {
+it(`Films list correctly renders`, () => {
   const tree = renderer.create(
-      <App
-        moviesList = {options.moviesList}
-        cardHeaderClickHandler = {options.testClickHandler}
+      <FilmsList
+        films = {options.films}
+        cardHeaderClickHandler = {options.onHeaderClickHandler}
       />).toJSON();
 
   expect(tree).toMatchSnapshot();
