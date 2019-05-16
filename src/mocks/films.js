@@ -1,23 +1,28 @@
 const films = [
   {
-    img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    name: `Fantastic Beasts: The Crimes of Grindelwald`
+    img: `fantastic-beasts-the-crimes-of-grindelwald`,
+    name: `Fantastic Beasts: The Crimes of Grindelwald`,
+    page: `movie-page.html`
   },
   {
-    img: `img/bohemian-rhapsody.jpg`,
-    name: `Bohemian Rhapsody`
+    img: `bohemian-rhapsody`,
+    name: `Bohemian Rhapsody`,
+    page: `movie-page.html`
   },
   {
-    img: `img/macbeth.jpg`,
-    name: `Macbeth`
+    img: `macbeth`,
+    name: `Macbeth`,
+    page: `movie-page.html`
   },
   {
-    img: `img/aviator.jpg`,
-    name: `Aviator`
+    img: `aviator`,
+    name: `Aviator`,
+    page: `movie-page.html`
   },
   {
-    img: `img/we-need-to-talk-about-kevin.jpg`,
-    name: `We need to talk about Kevin`
+    img: `we-need-to-talk-about-kevin`,
+    name: `We need to talk about Kevin`,
+    page: `movie-page.html`
   }
 ];
 

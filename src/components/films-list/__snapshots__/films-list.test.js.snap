@@ -18,9 +18,7 @@ Array [
     >
       <img
         alt="Fantastic Beasts: The Crimes of Grindelwald"
-        height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-        width="280"
+        src="img/img/fantastic-beasts-the-crimes-of-grindelwald.jpg.jpg"
       />
     </div>
     <h3
@@ -29,7 +27,6 @@ Array [
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
       >
         Fantastic Beasts: The Crimes of Grindelwald
       </a>
@@ -51,9 +48,7 @@ Array [
     >
       <img
         alt="Bohemian Rhapsody"
-        height="175"
-        src="img/bohemian-rhapsody.jpg"
-        width="280"
+        src="img/img/bohemian-rhapsody.jpg.jpg"
       />
     </div>
     <h3
@@ -62,7 +57,6 @@ Array [
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
       >
         Bohemian Rhapsody
       </a>
@@ -84,9 +78,7 @@ Array [
     >
       <img
         alt="Macbeth"
-        height="175"
-        src="img/macbeth.jpg"
-        width="280"
+        src="img/img/macbeth.jpg.jpg"
       />
     </div>
     <h3
@@ -95,7 +87,6 @@ Array [
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
       >
         Macbeth
       </a>
@@ -117,9 +108,7 @@ Array [
     >
       <img
         alt="Aviator"
-        height="175"
-        src="img/aviator.jpg"
-        width="280"
+        src="img/img/aviator.jpg.jpg"
       />
     </div>
     <h3
@@ -128,7 +117,6 @@ Array [
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
       >
         Aviator
       </a>
@@ -150,9 +138,7 @@ Array [
     >
       <img
         alt="We need to talk about Kevin"
-        height="175"
-        src="img/we-need-to-talk-about-kevin.jpg"
-        width="280"
+        src="img/img/we-need-to-talk-about-kevin.jpg.jpg"
       />
     </div>
     <h3
@@ -161,7 +147,6 @@ Array [
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
       >
         We need to talk about Kevin
       </a>

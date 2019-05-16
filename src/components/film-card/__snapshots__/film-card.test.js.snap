@@ -17,9 +17,7 @@ exports[`Film card correctly renders 1`] = `
   >
     <img
       alt="Fantastic Beasts: The Crimes of Grindelwald"
-      height="175"
-      src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-      width="280"
+      src="img/img/fantastic-beasts-the-crimes-of-grindelwald.jpg.jpg"
     />
   </div>
   <h3
@@ -28,7 +26,6 @@ exports[`Film card correctly renders 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
     >
       Fantastic Beasts: The Crimes of Grindelwald
     </a>
