@@ -12,21 +12,23 @@ class FilmsList extends React.PureComponent {
 
   render() {
     const {films, cardHeaderClickHandler} = this.props;
-    const onPlayHandler = (film) => {
-      return film;
-    };
-    const onOverHandler = (film) => {
-      this.setState({activeFilm: film});
-    };
     return films.map((film, i) => {
       return <FilmCard
         film = {film}
         onHeaderClick = {cardHeaderClickHandler}
-        onPlay = {onPlayHandler}
-        onOver = {onOverHandler}
+        onPlay = {this._onPlayHandler.bind(this)}
+        onOver = {this._onOverHandler.bind(this)}
         key = {i}
       />;
     });
+  }
+
+  _onPlayHandler(film) {
+    return film;
+  }
+
+  _onOverHandler(film) {
+    this.setState({activeFilm: film});
   }
 }
 

@@ -2,23 +2,24 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const FilmCard = (props) => {
-  const {film, onHeaderClick, onPlay, onOver, imgWidth, imgHeight} = props;
+  const {film, imgWidth, imgHeight} = props;
+  const image = film.image;
   return <article className="small-movie-card catalog__movies-card" onMouseOver={() => {
-    onOver(film);
+    props.onOver(film);
   }}>
     <button className="small-movie-card__play-btn" type="button" onClick={() => {
-      onPlay(film);
+      props.onPlay(film);
     }}>Play</button>
     <div className="small-movie-card__image">
-      <img src={`img/${film.img}.jpg`} alt={film.name} width={imgWidth} height={imgHeight} />
+      <img src={`img/${image.name}.${image.extension}`} alt={image.name} width={imgWidth} height={imgHeight} />
     </div>
-    <h3 className="small-movie-card__title" onClick={onHeaderClick}>
+    <h3 className="small-movie-card__title" onClick={props.onHeaderClick}>
       <a className="small-movie-card__link" href={film.page}>{film.name}</a>
     </h3>
   </article>;
 };
 
-FilmCard.defualtProps = {
+FilmCard.defaultProps = {
   imgWidth: 280,
   imgHeight: 175
 };

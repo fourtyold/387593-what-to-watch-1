@@ -5,24 +5,44 @@ import FilmsList from "./films-list.jsx";
 const options = {
   films: [
     {
-      img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-      name: `Fantastic Beasts: The Crimes of Grindelwald`
+      image: {
+        name: `fantastic-beasts-the-crimes-of-grindelwald`,
+        extension: `jpg`
+      },
+      name: `Fantastic Beasts: The Crimes of Grindelwald`,
+      page: `movie-page.html`
     },
     {
-      img: `img/bohemian-rhapsody.jpg`,
-      name: `Bohemian Rhapsody`
+      image: {
+        name: `bohemian-rhapsody`,
+        extension: `jpg`
+      },
+      name: `Bohemian Rhapsody`,
+      page: `movie-page.html`
     },
     {
-      img: `img/macbeth.jpg`,
-      name: `Macbeth`
+      image: {
+        name: `macbeth`,
+        extension: `jpg`
+      },
+      name: `Macbeth`,
+      page: `movie-page.html`
     },
     {
-      img: `img/aviator.jpg`,
-      name: `Aviator`
+      image: {
+        name: `aviator`,
+        extension: `jpg`
+      },
+      name: `Aviator`,
+      page: `movie-page.html`
     },
     {
-      img: `img/we-need-to-talk-about-kevin.jpg`,
-      name: `We need to talk about Kevin`
+      image: {
+        name: `we-need-to-talk-about-kevin`,
+        extension: `jpg`
+      },
+      name: `We need to talk about Kevin`,
+      page: `movie-page.html`
     }
   ],
   onHeaderClickHandler: () => {}

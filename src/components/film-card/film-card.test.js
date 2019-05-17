@@ -4,8 +4,12 @@ import FilmCard from "./film-card.jsx";
 
 const options = {
   film: {
-    img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    name: `Fantastic Beasts: The Crimes of Grindelwald`
+    image: {
+      name: `fantastic-beasts-the-crimes-of-grindelwald`,
+      extension: `jpg`
+    },
+    name: `Fantastic Beasts: The Crimes of Grindelwald`,
+    page: `movie-page.html`
   },
   onPlayHandler: () => {},
   onOverHandler: () => {},

@@ -391,8 +391,10 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
-              src="img/img/fantastic-beasts-the-crimes-of-grindelwald.jpg.jpg"
+              alt="fantastic-beasts-the-crimes-of-grindelwald"
+              height={175}
+              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              width={280}
             />
           </div>
           <h3
@@ -401,6 +403,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href="movie-page.html"
             >
               Fantastic Beasts: The Crimes of Grindelwald
             </a>
@@ -421,8 +424,10 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="Bohemian Rhapsody"
-              src="img/img/bohemian-rhapsody.jpg.jpg"
+              alt="bohemian-rhapsody"
+              height={175}
+              src="img/bohemian-rhapsody.jpg"
+              width={280}
             />
           </div>
           <h3
@@ -431,6 +436,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href="movie-page.html"
             >
               Bohemian Rhapsody
             </a>
@@ -451,8 +457,10 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="Macbeth"
-              src="img/img/macbeth.jpg.jpg"
+              alt="macbeth"
+              height={175}
+              src="img/macbeth.jpg"
+              width={280}
             />
           </div>
           <h3
@@ -461,6 +469,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href="movie-page.html"
             >
               Macbeth
             </a>
@@ -481,8 +490,10 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="Aviator"
-              src="img/img/aviator.jpg.jpg"
+              alt="aviator"
+              height={175}
+              src="img/aviator.jpg"
+              width={280}
             />
           </div>
           <h3
@@ -491,6 +502,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href="movie-page.html"
             >
               Aviator
             </a>
@@ -511,8 +523,10 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="We need to talk about Kevin"
-              src="img/img/we-need-to-talk-about-kevin.jpg.jpg"
+              alt="we-need-to-talk-about-kevin"
+              height={175}
+              src="img/we-need-to-talk-about-kevin.jpg"
+              width={280}
             />
           </div>
           <h3
@@ -521,6 +535,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
+              href="movie-page.html"
             >
               We need to talk about Kevin
             </a>
