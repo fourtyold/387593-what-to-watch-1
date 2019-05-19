@@ -1,5 +1,6 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
+import FilmsList from "../films-list/films-list.jsx";
 
 const App = (props) => {
   const {moviesList, cardHeaderClickHandler} = props;
@@ -124,19 +125,10 @@ const App = (props) => {
           </ul>
 
           <div className="catalog__movies-list">
-
-            {moviesList.map((name, i) => {
-              return <article key={i} className="small-movie-card catalog__movies-card">
-                <button className="small-movie-card__play-btn" type="button">Play</button>
-                <div className="small-movie-card__image">
-                  <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt={name} width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title" onClick={cardHeaderClickHandler}>
-                  <a className="small-movie-card__link" href="movie-page.html">{name}</a>
-                </h3>
-              </article>;
-            })}
-
+            <FilmsList
+              films={moviesList}
+              cardHeaderClickHandler={cardHeaderClickHandler}
+            />
           </div>
 
           <div className="catalog__more">
@@ -162,7 +154,7 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  moviesList: PropTypes.array.isRequired,
+  moviesList: PropTypes.arrayOf(PropTypes.object).isRequired,
   cardHeaderClickHandler: PropTypes.func.isRequired
 };
 

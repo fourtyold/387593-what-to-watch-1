@@ -1,17 +1,58 @@
 import React from "react";
-import Enzyme, {shallow} from "enzyme";
+import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import App from "./app.jsx";
 
 Enzyme.configure({adapter: new Adapter()});
 
 const options = {
-  moviesList: [`test_1`, `test_2`, `test_3`, `test_4`],
+  moviesList: [
+    {
+      image: {
+        name: `fantastic-beasts-the-crimes-of-grindelwald`,
+        extension: `jpg`
+      },
+      name: `Fantastic Beasts: The Crimes of Grindelwald`,
+      page: `movie-page.html`
+    },
+    {
+      image: {
+        name: `bohemian-rhapsody`,
+        extension: `jpg`
+      },
+      name: `Bohemian Rhapsody`,
+      page: `movie-page.html`
+    },
+    {
+      image: {
+        name: `macbeth`,
+        extension: `jpg`
+      },
+      name: `Macbeth`,
+      page: `movie-page.html`
+    },
+    {
+      image: {
+        name: `aviator`,
+        extension: `jpg`
+      },
+      name: `Aviator`,
+      page: `movie-page.html`
+    },
+    {
+      image: {
+        name: `we-need-to-talk-about-kevin`,
+        extension: `jpg`
+      },
+      name: `We need to talk about Kevin`,
+      page: `movie-page.html`
+    }
+  ],
   testClickHandler: jest.fn()
 };
 
 it(`Click on card header works correctly`, () => {
-  const app = shallow(<App
+  const app = mount(<App
     moviesList = {options.moviesList}
     cardHeaderClickHandler = {options.testClickHandler}
   />);

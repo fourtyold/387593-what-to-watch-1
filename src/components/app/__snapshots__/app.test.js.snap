@@ -378,9 +378,11 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseOver={[Function]}
         >
           <button
             className="small-movie-card__play-btn"
+            onClick={[Function]}
             type="button"
           >
             Play
@@ -389,10 +391,10 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="test_1"
-              height="175"
+              alt="fantastic-beasts-the-crimes-of-grindelwald"
+              height={175}
               src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
+              width={280}
             />
           </div>
           <h3
@@ -403,15 +405,17 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              test_1
+              Fantastic Beasts: The Crimes of Grindelwald
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseOver={[Function]}
         >
           <button
             className="small-movie-card__play-btn"
+            onClick={[Function]}
             type="button"
           >
             Play
@@ -420,10 +424,10 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="test_2"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
+              alt="bohemian-rhapsody"
+              height={175}
+              src="img/bohemian-rhapsody.jpg"
+              width={280}
             />
           </div>
           <h3
@@ -434,15 +438,17 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              test_2
+              Bohemian Rhapsody
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseOver={[Function]}
         >
           <button
             className="small-movie-card__play-btn"
+            onClick={[Function]}
             type="button"
           >
             Play
@@ -451,10 +457,10 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="test_3"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
+              alt="macbeth"
+              height={175}
+              src="img/macbeth.jpg"
+              width={280}
             />
           </div>
           <h3
@@ -465,15 +471,17 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              test_3
+              Macbeth
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseOver={[Function]}
         >
           <button
             className="small-movie-card__play-btn"
+            onClick={[Function]}
             type="button"
           >
             Play
@@ -482,10 +490,10 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="test_4"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
+              alt="aviator"
+              height={175}
+              src="img/aviator.jpg"
+              width={280}
             />
           </div>
           <h3
@@ -496,7 +504,40 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              test_4
+              Aviator
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onMouseOver={[Function]}
+        >
+          <button
+            className="small-movie-card__play-btn"
+            onClick={[Function]}
+            type="button"
+          >
+            Play
+          </button>
+          <div
+            className="small-movie-card__image"
+          >
+            <img
+              alt="we-need-to-talk-about-kevin"
+              height={175}
+              src="img/we-need-to-talk-about-kevin.jpg"
+              width={280}
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+            onClick={[Function]}
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+            >
+              We need to talk about Kevin
             </a>
           </h3>
         </article>
