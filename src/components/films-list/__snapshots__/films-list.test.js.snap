@@ -4,24 +4,11 @@ exports[`Films list correctly renders 1`] = `
 Array [
   <article
     className="small-movie-card catalog__movies-card"
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
-    <button
-      className="small-movie-card__play-btn"
-      onClick={[Function]}
-      type="button"
-    >
-      Play
-    </button>
-    <div
-      className="small-movie-card__image"
-    >
-      <img
-        alt="fantastic-beasts-the-crimes-of-grindelwald"
-        height={175}
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-        width={280}
-      />
+    <div>
+      <video />
     </div>
     <h3
       className="small-movie-card__title"
@@ -37,24 +24,11 @@ Array [
   </article>,
   <article
     className="small-movie-card catalog__movies-card"
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
-    <button
-      className="small-movie-card__play-btn"
-      onClick={[Function]}
-      type="button"
-    >
-      Play
-    </button>
-    <div
-      className="small-movie-card__image"
-    >
-      <img
-        alt="bohemian-rhapsody"
-        height={175}
-        src="img/bohemian-rhapsody.jpg"
-        width={280}
-      />
+    <div>
+      <video />
     </div>
     <h3
       className="small-movie-card__title"
@@ -70,24 +44,11 @@ Array [
   </article>,
   <article
     className="small-movie-card catalog__movies-card"
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
-    <button
-      className="small-movie-card__play-btn"
-      onClick={[Function]}
-      type="button"
-    >
-      Play
-    </button>
-    <div
-      className="small-movie-card__image"
-    >
-      <img
-        alt="macbeth"
-        height={175}
-        src="img/macbeth.jpg"
-        width={280}
-      />
+    <div>
+      <video />
     </div>
     <h3
       className="small-movie-card__title"
@@ -103,24 +64,11 @@ Array [
   </article>,
   <article
     className="small-movie-card catalog__movies-card"
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
-    <button
-      className="small-movie-card__play-btn"
-      onClick={[Function]}
-      type="button"
-    >
-      Play
-    </button>
-    <div
-      className="small-movie-card__image"
-    >
-      <img
-        alt="aviator"
-        height={175}
-        src="img/aviator.jpg"
-        width={280}
-      />
+    <div>
+      <video />
     </div>
     <h3
       className="small-movie-card__title"
@@ -136,24 +84,11 @@ Array [
   </article>,
   <article
     className="small-movie-card catalog__movies-card"
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
-    <button
-      className="small-movie-card__play-btn"
-      onClick={[Function]}
-      type="button"
-    >
-      Play
-    </button>
-    <div
-      className="small-movie-card__image"
-    >
-      <img
-        alt="we-need-to-talk-about-kevin"
-        height={175}
-        src="img/we-need-to-talk-about-kevin.jpg"
-        width={280}
-      />
+    <div>
+      <video />
     </div>
     <h3
       className="small-movie-card__title"

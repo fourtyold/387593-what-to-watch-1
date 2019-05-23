@@ -13,7 +13,8 @@ const options = {
         extension: `jpg`
       },
       name: `Fantastic Beasts: The Crimes of Grindelwald`,
-      page: `movie-page.html`
+      page: `movie-page.html`,
+      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
     },
     {
       image: {
@@ -21,7 +22,8 @@ const options = {
         extension: `jpg`
       },
       name: `Bohemian Rhapsody`,
-      page: `movie-page.html`
+      page: `movie-page.html`,
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
     },
     {
       image: {
@@ -29,7 +31,8 @@ const options = {
         extension: `jpg`
       },
       name: `Macbeth`,
-      page: `movie-page.html`
+      page: `movie-page.html`,
+      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
     },
     {
       image: {
@@ -37,7 +40,8 @@ const options = {
         extension: `jpg`
       },
       name: `Aviator`,
-      page: `movie-page.html`
+      page: `movie-page.html`,
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
     },
     {
       image: {
@@ -45,7 +49,8 @@ const options = {
         extension: `jpg`
       },
       name: `We need to talk about Kevin`,
-      page: `movie-page.html`
+      page: `movie-page.html`,
+      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
     }
   ],
   testClickHandler: jest.fn()

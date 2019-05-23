@@ -8,27 +8,37 @@ class FilmsList extends React.PureComponent {
     this.state = {
       activeFilm: null
     };
+    this.timer = null;
+    this._enterHandler = this._enterHandler.bind(this);
+    this._leaveHandler = this._leaveHandler.bind(this);
   }
 
   render() {
     const {films, cardHeaderClickHandler} = this.props;
     return films.map((film, i) => {
       return <FilmCard
-        film = {film}
-        onHeaderClick = {cardHeaderClickHandler}
-        onPlay = {this._onPlayHandler.bind(this)}
-        onOver = {this._onOverHandler.bind(this)}
-        key = {i}
+        film={film}
+        onHeaderClick={cardHeaderClickHandler}
+        onEnter={this._enterHandler}
+        onLeave={this._leaveHandler}
+        index={i}
+        isPlaying={i === this.state.activeFilm}
+        key={i}
       />;
     });
   }
 
-  _onPlayHandler(film) {
-    return film;
+  _leaveHandler() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+    this.setState({activeFilm: -1});
   }
 
-  _onOverHandler(film) {
-    this.setState({activeFilm: film});
+  _enterHandler(i) {
+    this.timer = setTimeout(() => {
+      this.setState({activeFilm: i});
+    }, 1000);
   }
 }
 

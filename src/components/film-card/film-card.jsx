@@ -1,18 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
+import VideoPlayer from "../video-player/video-player.jsx";
 
 const FilmCard = (props) => {
-  const {film, imgWidth, imgHeight} = props;
-  const image = film.image;
-  return <article className="small-movie-card catalog__movies-card" onMouseOver={() => {
-    props.onOver(film);
-  }}>
-    <button className="small-movie-card__play-btn" type="button" onClick={() => {
-      props.onPlay(film);
-    }}>Play</button>
-    <div className="small-movie-card__image">
-      <img src={`img/${image.name}.${image.extension}`} alt={image.name} width={imgWidth} height={imgHeight} />
-    </div>
+  const {film, width, height, isPlaying} = props;
+  return <article className="small-movie-card catalog__movies-card"
+    onMouseEnter={() => {
+      props.onEnter(props.index);
+    }}
+    onMouseLeave={() => {
+      props.onLeave();
+    }}
+  >
+    <VideoPlayer
+      film={film}
+      width={width}
+      height={height}
+      isPlaying={isPlaying}
+    />
     <h3 className="small-movie-card__title" onClick={props.onHeaderClick}>
       <a className="small-movie-card__link" href={film.page}>{film.name}</a>
     </h3>
@@ -20,17 +25,19 @@ const FilmCard = (props) => {
 };
 
 FilmCard.defaultProps = {
-  imgWidth: 280,
-  imgHeight: 175
+  width: 280,
+  height: 175
 };
 
 FilmCard.propTypes = {
   film: PropTypes.object.isRequired,
-  onPlay: PropTypes.func,
-  onOver: PropTypes.func,
+  onLeave: PropTypes.func,
+  onEnter: PropTypes.func,
   onHeaderClick: PropTypes.func,
-  imgWidth: PropTypes.number,
-  imgHeight: PropTypes.number
+  width: PropTypes.number,
+  height: PropTypes.number,
+  isPlaying: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired
 };
 
 export default FilmCard;
