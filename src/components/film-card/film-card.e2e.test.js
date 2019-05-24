@@ -19,17 +19,19 @@ const options = {
   leaveHandler: jest.fn(),
   onHeaderClickHandler: jest.fn(),
   index: 0,
-  isPlaying: false
+  isPlaying: false,
+  muted: true
 };
 
 it(`Handler is called on card hover`, () => {
   const filmCard = mount(<FilmCard
-    film = {options.film}
-    onHeaderClick = {options.onHeaderClickHandler}
-    onEnter = {options.enterHandler}
-    onLeave = {options.leaveHandler}
-    index = {options.index}
-    isPlaying = {options.isPlaying}
+    film={options.film}
+    onHeaderClick={options.onHeaderClickHandler}
+    onEnter={options.enterHandler}
+    onLeave={options.leaveHandler}
+    index={options.index}
+    isPlaying={options.isPlaying}
+    muted={options.muted}
   />);
 
   // const playButton = filmCard.find(`.small-movie-card__play-btn`);

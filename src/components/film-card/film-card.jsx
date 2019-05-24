@@ -17,6 +17,7 @@ const FilmCard = (props) => {
       width={width}
       height={height}
       isPlaying={isPlaying}
+      muted={props.muted}
     />
     <h3 className="small-movie-card__title" onClick={props.onHeaderClick}>
       <a className="small-movie-card__link" href={film.page}>{film.name}</a>
@@ -37,7 +38,8 @@ FilmCard.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
   isPlaying: PropTypes.bool.isRequired,
-  index: PropTypes.number.isRequired
+  index: PropTypes.number.isRequired,
+  muted: PropTypes.bool.isRequired
 };
 
 export default FilmCard;

@@ -50,7 +50,8 @@ const options = {
       preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
     }
   ],
-  onHeaderClickHandler: () => {}
+  onHeaderClickHandler: () => {},
+  delay: 1000
 };
 
 function createNodeMock(element) {
@@ -64,8 +65,9 @@ it(`Films list correctly renders`, () => {
   const customMockCreator = {createNodeMock};
   const tree = renderer.create(
       <FilmsList
-        films = {options.films}
-        cardHeaderClickHandler = {options.onHeaderClickHandler}
+        films={options.films}
+        cardHeaderClickHandler={options.onHeaderClickHandler}
+        delay={options.delay}
       />, customMockCreator).toJSON();
 
   expect(tree).toMatchSnapshot();

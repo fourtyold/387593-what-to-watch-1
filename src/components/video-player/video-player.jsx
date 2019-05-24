@@ -5,6 +5,9 @@ class VideoPlayer extends React.PureComponent {
   constructor(props) {
     super(props);
     this._videoRef = React.createRef();
+    this.state = {
+      muted: false
+    };
   }
 
   render() {
@@ -22,13 +25,15 @@ class VideoPlayer extends React.PureComponent {
 
     video.src = film.preview;
     video.poster = `img/${image.name}.${image.extension}`;
-    video.muted = true;
     video.width = this.props.width;
     video.height = this.props.height;
+    video.muted = this.state.muted;
   }
 
   componentDidUpdate() {
     const video = this._videoRef.current;
+    this.setState({muted: this.props.muted});
+    video.muted = this.state.muted;
     if (this.props.isPlaying) {
       video.play();
       return;
@@ -39,8 +44,14 @@ class VideoPlayer extends React.PureComponent {
 }
 
 VideoPlayer.propTypes = {
-  film: PropTypes.object.isRequired,
+  film: PropTypes.shape({
+    image: PropTypes.object,
+    name: PropTypes.string,
+    page: PropTypes.string,
+    preview: PropTypes.string
+  }).isRequired,
   isPlaying: PropTypes.bool.isRequired,
+  muted: PropTypes.bool.isRequired,
   width: PropTypes.number,
   height: PropTypes.number
 };

@@ -12,7 +12,8 @@ const options = {
     page: `movie-page.html`,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
   },
-  isPlaying: false
+  isPlaying: false,
+  muted: true
 };
 
 function createNodeMock(element) {
@@ -26,8 +27,9 @@ it(`Video player correctly renders`, () => {
   const customMockCreator = {createNodeMock};
   const tree = renderer.create(
       <VideoPlayer
-        film = {options.film}
-        isPlaying = {options.isPlaying}
+        film={options.film}
+        isPlaying={options.isPlaying}
+        muted={options.muted}
       />, customMockCreator).toJSON();
 
   expect(tree).toMatchSnapshot();

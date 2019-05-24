@@ -53,13 +53,15 @@ const options = {
       preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
     }
   ],
-  testClickHandler: jest.fn()
+  testClickHandler: jest.fn(),
+  delayBeforePlay: 1000
 };
 
 it(`Click on card header works correctly`, () => {
   const app = mount(<App
-    moviesList = {options.moviesList}
-    cardHeaderClickHandler = {options.testClickHandler}
+    moviesList={options.moviesList}
+    cardHeaderClickHandler={options.testClickHandler}
+    delayBeforePlay={options.delayBeforePlay}
   />);
 
   const cardHeader = app.find(`.small-movie-card__title`);

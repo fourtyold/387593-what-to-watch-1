@@ -6,7 +6,8 @@ class FilmsList extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeFilm: null
+      activeFilm: null,
+      handlerDelay: this.props.delay
     };
     this.timer = null;
     this._enterHandler = this._enterHandler.bind(this);
@@ -23,7 +24,8 @@ class FilmsList extends React.PureComponent {
         onLeave={this._leaveHandler}
         index={i}
         isPlaying={i === this.state.activeFilm}
-        key={i}
+        muted={true}
+        key={`film-card-${i}`}
       />;
     });
   }
@@ -38,13 +40,14 @@ class FilmsList extends React.PureComponent {
   _enterHandler(i) {
     this.timer = setTimeout(() => {
       this.setState({activeFilm: i});
-    }, 1000);
+    }, this.state.handlerDelay);
   }
 }
 
 FilmsList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.object).isRequired,
-  cardHeaderClickHandler: PropTypes.func
+  cardHeaderClickHandler: PropTypes.func,
+  delay: PropTypes.number.isRequired
 };
 
 export default FilmsList;

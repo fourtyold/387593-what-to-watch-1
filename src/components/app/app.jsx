@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
 
 const App = (props) => {
-  const {moviesList, cardHeaderClickHandler} = props;
+  const {moviesList, cardHeaderClickHandler, delayBeforePlay} = props;
   return (
     <Fragment>
       <div className="visually-hidden">
@@ -128,6 +128,7 @@ const App = (props) => {
             <FilmsList
               films={moviesList}
               cardHeaderClickHandler={cardHeaderClickHandler}
+              delay={delayBeforePlay}
             />
           </div>
 
@@ -155,7 +156,8 @@ const App = (props) => {
 
 App.propTypes = {
   moviesList: PropTypes.arrayOf(PropTypes.object).isRequired,
-  cardHeaderClickHandler: PropTypes.func.isRequired
+  cardHeaderClickHandler: PropTypes.func.isRequired,
+  delayBeforePlay: PropTypes.number.isRequired
 };
 
 export default App;

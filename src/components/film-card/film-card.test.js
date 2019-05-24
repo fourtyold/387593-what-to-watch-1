@@ -16,7 +16,8 @@ const options = {
   index: 0,
   enterHandler: () => {},
   leaveHandler: () => {},
-  onHeaderClickHandler: () => {}
+  onHeaderClickHandler: () => {},
+  muted: true
 };
 
 function createNodeMock(element) {
@@ -30,12 +31,13 @@ it(`Film card correctly renders`, () => {
   const customMockCreator = {createNodeMock};
   const tree = renderer.create(
       <FilmCard
-        film = {options.film}
-        onHeaderClick = {options.onHeaderClickHandler}
-        onEnter = {options.enterHandler}
-        onLeave = {options.leaveHandler}
-        isPlaying = {options.isPlaying}
-        index = {options.index}
+        film={options.film}
+        onHeaderClick={options.onHeaderClickHandler}
+        onEnter={options.enterHandler}
+        onLeave={options.leaveHandler}
+        isPlaying={options.isPlaying}
+        index={options.index}
+        muted={options.muted}
       />, customMockCreator).toJSON();
 
   expect(tree).toMatchSnapshot();
