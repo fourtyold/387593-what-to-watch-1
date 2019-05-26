@@ -12,23 +12,32 @@ const options = {
       extension: `jpg`
     },
     name: `Fantastic Beasts: The Crimes of Grindelwald`,
-    page: `movie-page.html`
+    page: `movie-page.html`,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
   },
-  onPlayHandler: jest.fn(),
-  onOverHandler: jest.fn(),
-  onHeaderClickHandler: jest.fn()
+  enterHandler: jest.fn(),
+  leaveHandler: jest.fn(),
+  onHeaderClickHandler: jest.fn(),
+  index: 0,
+  isPlaying: false,
+  muted: true
 };
 
-it(`Click on play button works correctly`, () => {
+it(`Handler is called on card hover`, () => {
   const filmCard = mount(<FilmCard
-    film = {options.film}
-    onHeaderClick = {options.onHeaderClickHandler}
-    onPlay = {options.onPlayHandler}
-    onOver = {options.onOverHandler}
+    film={options.film}
+    onHeaderClick={options.onHeaderClickHandler}
+    onEnter={options.enterHandler}
+    onLeave={options.leaveHandler}
+    index={options.index}
+    isPlaying={options.isPlaying}
+    muted={options.muted}
   />);
 
-  const playButton = filmCard.find(`.small-movie-card__play-btn`);
-  playButton.simulate(`click`);
-  expect(options.onPlayHandler).toHaveBeenCalledTimes(1);
-  expect(options.onPlayHandler).toHaveBeenCalledWith(options.film);
+  // const playButton = filmCard.find(`.small-movie-card__play-btn`);
+  // playButton.simulate(`click`);
+  const card = filmCard.find(`.small-movie-card`);
+  card.simulate(`mouseenter`);
+  expect(options.enterHandler).toHaveBeenCalledTimes(1);
+  expect(options.enterHandler).toHaveBeenCalledWith(options.index);
 });

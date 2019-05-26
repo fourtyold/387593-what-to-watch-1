@@ -6,12 +6,14 @@ import films from "./mocks/films.js";
 const init = (dataArray) => {
   const options = {
     moviesList: dataArray,
-    cardHeaderClickHandler: () => {}
+    cardHeaderClickHandler: () => {},
+    delayBeforePlay: 1000
   };
   ReactDOM.render(
       <App
-        moviesList = {options.moviesList}
-        cardHeaderClickHandler = {options.cardHeaderClickHandler}
+        moviesList={options.moviesList}
+        cardHeaderClickHandler={options.cardHeaderClickHandler}
+        delayBeforePlay={options.delayBeforePlay}
       />,
       document.querySelector(`#root`)
   );
