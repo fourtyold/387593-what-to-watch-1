@@ -31,7 +31,12 @@ FilmCard.defaultProps = {
 };
 
 FilmCard.propTypes = {
-  film: PropTypes.object.isRequired,
+  film: PropTypes.shape({
+    image: PropTypes.objectOf(PropTypes.string),
+    name: PropTypes.string,
+    page: PropTypes.string,
+    preview: PropTypes.string
+  }).isRequired,
   onLeave: PropTypes.func,
   onEnter: PropTypes.func,
   onHeaderClick: PropTypes.func,
@@ -39,7 +44,7 @@ FilmCard.propTypes = {
   height: PropTypes.number,
   isPlaying: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,
-  muted: PropTypes.bool.isRequired
+  muted: PropTypes.bool
 };
 
 export default FilmCard;

@@ -24,7 +24,6 @@ class FilmsList extends React.PureComponent {
         onLeave={this._leaveHandler}
         index={i}
         isPlaying={i === this.state.activeFilm}
-        muted={true}
         key={`film-card-${i}`}
       />;
     });

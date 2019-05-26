@@ -3,11 +3,11 @@ import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
 import films from "./mocks/films.js";
 
-const init = (dataArray, delay) => {
+const init = (dataArray) => {
   const options = {
     moviesList: dataArray,
     cardHeaderClickHandler: () => {},
-    delayBeforePlay: delay
+    delayBeforePlay: 1000
   };
   ReactDOM.render(
       <App
@@ -19,4 +19,4 @@ const init = (dataArray, delay) => {
   );
 };
 
-init(films, 1000);
+init(films);
