@@ -4,13 +4,15 @@ import VideoPlayer from "../video-player/video-player.jsx";
 
 const FilmCard = (props) => {
   const {film, width, height, isPlaying} = props;
+  const mouseEnterHandler = () => {
+    props.onEnter(props.index);
+  };
+  const mouseLeaveHandler = () => {
+    props.onLeave();
+  };
   return <article className="small-movie-card catalog__movies-card"
-    onMouseEnter={() => {
-      props.onEnter(props.index);
-    }}
-    onMouseLeave={() => {
-      props.onLeave();
-    }}
+    onMouseEnter={mouseEnterHandler}
+    onMouseLeave={mouseLeaveHandler}
   >
     <VideoPlayer
       film={film}
@@ -23,11 +25,6 @@ const FilmCard = (props) => {
       <a className="small-movie-card__link" href={film.page}>{film.name}</a>
     </h3>
   </article>;
-};
-
-FilmCard.defaultProps = {
-  width: 280,
-  height: 175
 };
 
 FilmCard.propTypes = {
@@ -45,6 +42,12 @@ FilmCard.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,
   muted: PropTypes.bool
+};
+
+FilmCard.defaultProps = {
+  muted: true,
+  width: 280,
+  height: 175
 };
 
 export default FilmCard;

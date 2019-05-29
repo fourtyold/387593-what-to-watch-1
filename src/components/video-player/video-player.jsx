@@ -16,26 +16,29 @@ class VideoPlayer extends React.PureComponent {
   }
 
   componentDidMount() {
-    const {film} = this.props;
-    const image = film.image;
     const video = this._videoRef.current;
-
-    video.src = film.preview;
-    video.poster = `img/${image.name}.${image.extension}`;
     video.width = this.props.width;
     video.height = this.props.height;
-    video.muted = this.props.muted;
+    this._setVideoProps(video);
   }
 
   componentDidUpdate() {
     const video = this._videoRef.current;
-    video.muted = this.props.muted;
+    this._setVideoProps(video);
     if (this.props.isPlaying) {
       video.play();
       return;
     }
     video.pause();
     video.load();
+  }
+
+  _setVideoProps(obj) {
+    const {film} = this.props;
+    const image = film.image;
+    obj.src = film.preview;
+    obj.poster = `img/${image.name}.${image.extension}`;
+    obj.muted = this.props.muted;
   }
 }
 

@@ -1,12 +1,9 @@
 import React from "react";
-import Enzyme, {mount} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import {App} from "./app.jsx";
-
-Enzyme.configure({adapter: new Adapter()});
+import renderer from "react-test-renderer";
+import GenreList from "./genre-list.jsx";
 
 const options = {
-  moviesList: [
+  filmList: [
     {
       image: {
         name: `fantastic-beasts-the-crimes-of-grindelwald`,
@@ -56,25 +53,19 @@ const options = {
       page: `movie-page.html`,
       preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
       genre: `Fantastic`
-    }
-  ],
-  testClickHandler: jest.fn(),
-  onSetFilter: jest.fn(),
-  delayBeforePlay: 1000,
-  filterGenre: `All genres`
+    }],
+  filterHandler: () => {},
+  currentGenre: `genre`
 };
 
-it(`Click on card header works correctly`, () => {
-  const app = mount(<App
-    filterGenre={options.filterGenre}
-    fullList={options.moviesList}
-    onSetFilter={options.onSetFilter}
-    moviesList={options.moviesList}
-    cardHeaderClickHandler={options.testClickHandler}
-    delayBeforePlay={options.delayBeforePlay}
-  />);
+it(`Genre list correctly renders`, () => {
+  const tree = renderer.create(
+      <GenreList
+        filmList={options.filmList}
+        filterHandler={options.filterHandler}
+        currentGenre={options.currentGenre}
+      />
+  ).toJSON();
 
-  const cardHeader = app.find(`.small-movie-card__title`);
-  cardHeader.at(0).simulate(`click`);
-  expect(options.testClickHandler).toHaveBeenCalledTimes(1);
+  expect(tree).toMatchSnapshot();
 });

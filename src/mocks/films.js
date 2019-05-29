@@ -6,7 +6,8 @@ const films = [
     },
     name: `Fantastic Beasts: The Crimes of Grindelwald`,
     page: `movie-page.html`,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    genre: `Fantastic`
   },
   {
     image: {
@@ -15,7 +16,8 @@ const films = [
     },
     name: `Bohemian Rhapsody`,
     page: `movie-page.html`,
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    genre: `Documentary`
   },
   {
     image: {
@@ -24,7 +26,8 @@ const films = [
     },
     name: `Macbeth`,
     page: `movie-page.html`,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    genre: `Documentary`
   },
   {
     image: {
@@ -33,7 +36,8 @@ const films = [
     },
     name: `Aviator`,
     page: `movie-page.html`,
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    genre: `Dramas`
   },
   {
     image: {
@@ -42,7 +46,8 @@ const films = [
     },
     name: `We need to talk about Kevin`,
     page: `movie-page.html`,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    genre: `Fantastic`
   }
 ];
 

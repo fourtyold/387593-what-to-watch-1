@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import {App} from "./app.jsx";
 
 const options = {
   moviesList: [
@@ -11,7 +11,8 @@ const options = {
       },
       name: `Fantastic Beasts: The Crimes of Grindelwald`,
       page: `movie-page.html`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      genre: `Fantastic`
     },
     {
       image: {
@@ -20,7 +21,8 @@ const options = {
       },
       name: `Bohemian Rhapsody`,
       page: `movie-page.html`,
-      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      genre: `Documentary`
     },
     {
       image: {
@@ -29,7 +31,8 @@ const options = {
       },
       name: `Macbeth`,
       page: `movie-page.html`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      genre: `Documentary`
     },
     {
       image: {
@@ -38,7 +41,8 @@ const options = {
       },
       name: `Aviator`,
       page: `movie-page.html`,
-      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      genre: `Dramas`
     },
     {
       image: {
@@ -47,11 +51,14 @@ const options = {
       },
       name: `We need to talk about Kevin`,
       page: `movie-page.html`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      genre: `Fantastic`
     }
   ],
   testClickHandler: () => {},
-  delayBeforePlay: 1000
+  onSetFilter: () => {},
+  delayBeforePlay: 1000,
+  filterGenre: `All genres`
 };
 
 function createNodeMock(element) {
@@ -66,6 +73,9 @@ it(`App correctly renders`, () => {
   const tree = renderer.create(
       <App
         moviesList={options.moviesList}
+        onSetFilter={options.onSetFilter}
+        filterGenre={options.filterGenre}
+        fullList={options.moviesList}
         cardHeaderClickHandler={options.testClickHandler}
         delayBeforePlay={options.delayBeforePlay}
       />, customMockCreator).toJSON();
