@@ -75,7 +75,7 @@ it(`App correctly renders`, () => {
         moviesList={options.moviesList}
         onSetFilter={options.onSetFilter}
         filterGenre={options.filterGenre}
-        fullList={options.moviesList}
+        fullFilmsList={options.moviesList}
         cardHeaderClickHandler={options.testClickHandler}
         delayBeforePlay={options.delayBeforePlay}
       />, customMockCreator).toJSON();

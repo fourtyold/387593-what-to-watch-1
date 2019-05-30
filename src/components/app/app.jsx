@@ -95,7 +95,7 @@ const App = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <GenreList
-            filmList={props.fullList}
+            fullFilmsList={props.fullFilmsList}
             filterHandler={props.onSetFilter}
             currentGenre={props.filterGenre}
           />
@@ -136,18 +136,18 @@ App.propTypes = {
   delayBeforePlay: PropTypes.number.isRequired,
   filterGenre: PropTypes.string.isRequired,
   onSetFilter: PropTypes.func.isRequired,
-  fullList: PropTypes.arrayOf(PropTypes.object).isRequired
+  fullFilmsList: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   filterGenre: state.filterGenre,
-  moviesList: state.filmsArray
+  moviesList: state.films
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSetFilter: (genre) => {
+  onSetFilter: (genre, films) => {
     dispatch(ActionCreators.setFilterGenre(genre));
-    dispatch(ActionCreators.getFilmsList(genre));
+    dispatch(ActionCreators.getFilmsList(genre, films));
   }
 });
 

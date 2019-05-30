@@ -1,4 +1,4 @@
-import {getFilteredArray, ActionCreators, ActionType, reducer} from "./reducer.js";
+import {filterFilms, ActionCreators, ActionType, reducer} from "./reducer.js";
 
 const films = [
   {
@@ -54,11 +54,11 @@ const films = [
 ];
 
 it(`All genres array is correct`, () => {
-  expect(getFilteredArray(`All genres`)).toEqual(films);
+  expect(filterFilms(`All genres`, films)).toEqual(films);
 });
 
 it(`Films array filter correctly`, () => {
-  expect(getFilteredArray(`Dramas`)).toEqual([{
+  expect(filterFilms(`Dramas`, films)).toEqual([{
     image: {
       name: `aviator`,
       extension: `jpg`
@@ -79,14 +79,14 @@ it(`Action creator returns correct genre on change filter genre`, () => {
 });
 
 it(`Action creator returns full films list, if filter type - all genres`, () => {
-  expect(ActionCreators.getFilmsList(`All genres`)).toEqual({
+  expect(ActionCreators.getFilmsList(`All genres`, films)).toEqual({
     type: ActionType.GET_FILMS_LIST,
     payload: films
   });
 });
 
 it(`Action creator returns correct filtered films list, if filter type is not all genres`, () => {
-  expect(ActionCreators.getFilmsList(`Dramas`)).toEqual({
+  expect(ActionCreators.getFilmsList(`Dramas`, films)).toEqual({
     type: ActionType.GET_FILMS_LIST,
     payload: [{
       image: {
@@ -104,7 +104,7 @@ it(`Action creator returns correct filtered films list, if filter type is not al
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(undefined, {})).toEqual({
     filterGenre: `All genres`,
-    filmsArray: films
+    films
   });
 });
 
@@ -124,7 +124,7 @@ it(`Reducer set correct genre to state`, () => {
 it(`Reducer set correct films array to state`, () => {
   expect(reducer({
     filterGenre: `Dramas`,
-    filmsArray: films
+    films
   }, {
     type: ActionType.GET_FILMS_LIST,
     payload: [{
@@ -139,7 +139,7 @@ it(`Reducer set correct films array to state`, () => {
     }]
   })).toEqual({
     filterGenre: `Dramas`,
-    filmsArray: [{
+    films: [{
       image: {
         name: `aviator`,
         extension: `jpg`

@@ -2,19 +2,19 @@ import films from "./mocks/films.js";
 
 const initialState = {
   filterGenre: `All genres`,
-  filmsArray: films
+  films
 };
 
 const ActionType = {
-  SET_FILTER_GENRE: 0,
-  GET_FILMS_LIST: 1
+  SET_FILTER_GENRE: `SET_FILTER_GENRE`,
+  GET_FILMS_LIST: `GET_FILMS_LIST`
 };
 
-const getFilteredArray = (genre) => {
+const filterFilms = (genre, fullFilmsList) => {
   if (genre === `All genres`) {
-    return [...films];
+    return [...fullFilmsList];
   }
-  return films.filter((film) => {
+  return fullFilmsList.filter((film) => {
     return film.genre === genre;
   });
 };
@@ -26,10 +26,10 @@ const ActionCreators = {
       payload: genre
     };
   },
-  getFilmsList: (genre) => {
+  getFilmsList: (genre, fullFilmsList) => {
     return {
       type: ActionType.GET_FILMS_LIST,
-      payload: getFilteredArray(genre)
+      payload: filterFilms(genre, fullFilmsList)
     };
   }
 };
@@ -42,10 +42,11 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.GET_FILMS_LIST:
       return Object.assign({}, state, {
-        filmsArray: action.payload
+        films: action.payload
       });
+    default:
+      return state;
   }
-  return state;
 };
 
-export {reducer, ActionCreators, ActionType, getFilteredArray};
+export {reducer, ActionCreators, ActionType, filterFilms};

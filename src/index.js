@@ -13,13 +13,13 @@ const init = (dataArray) => {
   const options = {
     cardHeaderClickHandler: () => {},
     delayBeforePlay: 1000,
-    fullList: dataArray
+    fullFilmsList: dataArray
   };
   ReactDOM.render(<Provider store={store}>
     <App
       cardHeaderClickHandler={options.cardHeaderClickHandler}
       delayBeforePlay={options.delayBeforePlay}
-      fullList={options.fullList}
+      fullFilmsList={options.fullFilmsList}
     />
   </Provider>,
   document.querySelector(`#root`)

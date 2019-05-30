@@ -61,7 +61,7 @@ const options = {
 it(`Genre list correctly renders`, () => {
   const tree = renderer.create(
       <GenreList
-        filmList={options.filmList}
+        fullFilmsList={options.filmList}
         filterHandler={options.filterHandler}
         currentGenre={options.currentGenre}
       />

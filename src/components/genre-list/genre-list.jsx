@@ -2,18 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const GenreList = (props) => {
-  const {filmList, filterHandler, currentGenre} = props;
-  let genres = [{genre: `All genres`}, ...filmList].map((film) => {
+  const {fullFilmsList, filterHandler, currentGenre} = props;
+  const genres = [{genre: `All genres`}, ...fullFilmsList].map((film) => {
     return film.genre;
   });
-  genres = new Set(genres);
-  genres = Array.from(genres);
+  const genresSet = new Set(genres);
+  const genresArray = Array.from(genresSet);
   return (
     <ul className="catalog__genres-list">
-      {genres.map((genre, i) => {
+      {genresArray.map((genre, i) => {
         return (<li key={`genre-${i}`} className={genre === currentGenre ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`}>
           <a href="#" className="catalog__genres-link" onClick={() => {
-            filterHandler(genre);
+            filterHandler(genre, fullFilmsList);
           }}>{genre}</a>
         </li>);
       })}
@@ -22,7 +22,7 @@ const GenreList = (props) => {
 };
 
 GenreList.propTypes = {
-  filmList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fullFilmsList: PropTypes.arrayOf(PropTypes.object).isRequired,
   filterHandler: PropTypes.func.isRequired,
   currentGenre: PropTypes.string.isRequired
 };
