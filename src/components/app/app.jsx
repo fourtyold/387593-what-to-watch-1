@@ -6,9 +6,17 @@ import {ActionCreators} from "../../reducer.js";
 import FilmsList from "../films-list/films-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
 
-const App = (props) => {
-  return (
-    <Fragment>
+class App extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      fullFilmsList: []
+    };
+  }
+
+  render() {
+    return <Fragment>
       <div className="visually-hidden">
         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><symbol id="add" viewBox="0 0 19 20">
           <title>+</title>
@@ -95,16 +103,16 @@ const App = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <GenreList
-            fullFilmsList={props.fullFilmsList}
-            filterHandler={props.onSetFilter}
-            currentGenre={props.filterGenre}
+            fullFilmsList={this.state.fullFilmsList}
+            filterHandler={this.props.onSetFilter}
+            currentGenre={this.props.filterGenre}
           />
 
           <div className="catalog__movies-list">
             <FilmsList
-              films={props.moviesList}
-              cardHeaderClickHandler={props.cardHeaderClickHandler}
-              delay={props.delayBeforePlay}
+              films={this.props.moviesList}
+              cardHeaderClickHandler={this.props.cardHeaderClickHandler}
+              delay={this.props.delayBeforePlay}
             />
           </div>
 
@@ -127,16 +135,21 @@ const App = (props) => {
           </div>
         </footer>
       </div>
-    </Fragment>);
-};
+    </Fragment>;
+  }
+
+  componentDidMount() {
+    this.setState({fullFilmsList: ActionCreators.getFilmsData()});
+    this.props.onSetFilter(`All genres`);
+  }
+}
 
 App.propTypes = {
   moviesList: PropTypes.arrayOf(PropTypes.object).isRequired,
   cardHeaderClickHandler: PropTypes.func.isRequired,
   delayBeforePlay: PropTypes.number.isRequired,
   filterGenre: PropTypes.string.isRequired,
-  onSetFilter: PropTypes.func.isRequired,
-  fullFilmsList: PropTypes.arrayOf(PropTypes.object).isRequired
+  onSetFilter: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -145,9 +158,9 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSetFilter: (genre, films) => {
+  onSetFilter: (genre) => {
     dispatch(ActionCreators.setFilterGenre(genre));
-    dispatch(ActionCreators.getFilmsList(genre, films));
+    dispatch(ActionCreators.getFilmsList(genre));
   }
 });
 

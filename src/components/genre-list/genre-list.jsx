@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 const GenreList = (props) => {
   const {fullFilmsList, filterHandler, currentGenre} = props;
   const genres = [{genre: `All genres`}, ...fullFilmsList].map((film) => {

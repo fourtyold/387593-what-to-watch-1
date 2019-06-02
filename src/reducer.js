@@ -2,7 +2,7 @@ import films from "./mocks/films.js";
 
 const initialState = {
   filterGenre: `All genres`,
-  films
+  films: []
 };
 
 const ActionType = {
@@ -20,13 +20,17 @@ const filterFilms = (genre, fullFilmsList) => {
 };
 
 const ActionCreators = {
+  getFilmsData: () => {
+    return films;
+  },
   setFilterGenre: (genre) => {
     return {
       type: ActionType.SET_FILTER_GENRE,
       payload: genre
     };
   },
-  getFilmsList: (genre, fullFilmsList) => {
+  getFilmsList: (genre) => {
+    const fullFilmsList = ActionCreators.getFilmsData();
     return {
       type: ActionType.GET_FILMS_LIST,
       payload: filterFilms(genre, fullFilmsList)

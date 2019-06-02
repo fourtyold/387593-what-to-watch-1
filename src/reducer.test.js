@@ -104,7 +104,7 @@ it(`Action creator returns correct filtered films list, if filter type is not al
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(undefined, {})).toEqual({
     filterGenre: `All genres`,
-    films
+    films: []
   });
 });
 
