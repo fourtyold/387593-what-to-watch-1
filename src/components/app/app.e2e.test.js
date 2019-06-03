@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import App from "./app.jsx";
+import {App} from "./app.jsx";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -14,7 +14,8 @@ const options = {
       },
       name: `Fantastic Beasts: The Crimes of Grindelwald`,
       page: `movie-page.html`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      genre: `Fantastic`
     },
     {
       image: {
@@ -23,7 +24,8 @@ const options = {
       },
       name: `Bohemian Rhapsody`,
       page: `movie-page.html`,
-      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      genre: `Documentary`
     },
     {
       image: {
@@ -32,7 +34,8 @@ const options = {
       },
       name: `Macbeth`,
       page: `movie-page.html`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      genre: `Documentary`
     },
     {
       image: {
@@ -41,7 +44,8 @@ const options = {
       },
       name: `Aviator`,
       page: `movie-page.html`,
-      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+      genre: `Dramas`
     },
     {
       image: {
@@ -50,15 +54,21 @@ const options = {
       },
       name: `We need to talk about Kevin`,
       page: `movie-page.html`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      genre: `Fantastic`
     }
   ],
   testClickHandler: jest.fn(),
-  delayBeforePlay: 1000
+  onSetFilter: jest.fn(),
+  delayBeforePlay: 1000,
+  filterGenre: `All genres`
 };
 
 it(`Click on card header works correctly`, () => {
   const app = mount(<App
+    filterGenre={options.filterGenre}
+    fullFilmsList={options.moviesList}
+    onSetFilter={options.onSetFilter}
     moviesList={options.moviesList}
     cardHeaderClickHandler={options.testClickHandler}
     delayBeforePlay={options.delayBeforePlay}

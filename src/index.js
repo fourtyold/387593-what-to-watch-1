@@ -1,22 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/app/app.jsx";
-import films from "./mocks/films.js";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
 
-const init = (dataArray) => {
+import App from "./components/app/app.jsx";
+import {reducer} from "./reducer.js";
+
+const store = createStore(reducer);
+
+const init = () => {
   const options = {
-    moviesList: dataArray,
     cardHeaderClickHandler: () => {},
     delayBeforePlay: 1000
   };
-  ReactDOM.render(
-      <App
-        moviesList={options.moviesList}
-        cardHeaderClickHandler={options.cardHeaderClickHandler}
-        delayBeforePlay={options.delayBeforePlay}
-      />,
-      document.querySelector(`#root`)
+  ReactDOM.render(<Provider store={store}>
+    <App
+      cardHeaderClickHandler={options.cardHeaderClickHandler}
+      delayBeforePlay={options.delayBeforePlay}
+    />
+  </Provider>,
+  document.querySelector(`#root`)
   );
 };
 
-init(films);
+init();

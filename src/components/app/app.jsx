@@ -1,11 +1,22 @@
 import React, {Fragment} from "react";
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import FilmsList from "../films-list/films-list.jsx";
 
-const App = (props) => {
-  const {moviesList, cardHeaderClickHandler, delayBeforePlay} = props;
-  return (
-    <Fragment>
+import {ActionCreators} from "../../reducer.js";
+import FilmsList from "../films-list/films-list.jsx";
+import GenreList from "../genre-list/genre-list.jsx";
+
+class App extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      fullFilmsList: []
+    };
+  }
+
+  render() {
+    return <Fragment>
       <div className="visually-hidden">
         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><symbol id="add" viewBox="0 0 19 20">
           <title>+</title>
@@ -91,44 +102,17 @@ const App = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
-          </ul>
+          <GenreList
+            fullFilmsList={this.state.fullFilmsList}
+            filterHandler={this.props.onSetFilter}
+            currentGenre={this.props.filterGenre}
+          />
 
           <div className="catalog__movies-list">
             <FilmsList
-              films={moviesList}
-              cardHeaderClickHandler={cardHeaderClickHandler}
-              delay={delayBeforePlay}
+              films={this.props.moviesList}
+              cardHeaderClickHandler={this.props.cardHeaderClickHandler}
+              delay={this.props.delayBeforePlay}
             />
           </div>
 
@@ -151,13 +135,35 @@ const App = (props) => {
           </div>
         </footer>
       </div>
-    </Fragment>);
-};
+    </Fragment>;
+  }
+
+  componentDidMount() {
+    this.setState({fullFilmsList: ActionCreators.getFilmsData()});
+    this.props.onSetFilter(`All genres`);
+  }
+}
 
 App.propTypes = {
   moviesList: PropTypes.arrayOf(PropTypes.object).isRequired,
   cardHeaderClickHandler: PropTypes.func.isRequired,
-  delayBeforePlay: PropTypes.number.isRequired
+  delayBeforePlay: PropTypes.number.isRequired,
+  filterGenre: PropTypes.string.isRequired,
+  onSetFilter: PropTypes.func.isRequired
 };
 
-export default App;
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  filterGenre: state.filterGenre,
+  moviesList: state.films
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSetFilter: (genre) => {
+    dispatch(ActionCreators.setFilterGenre(genre));
+    dispatch(ActionCreators.getFilmsList(genre));
+  }
+});
+
+export {App};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

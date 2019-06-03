@@ -1,9 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {App} from "./app.jsx";
+import GenreList from "./genre-list.jsx";
 
 const options = {
-  moviesList: [
+  filmList: [
     {
       image: {
         name: `fantastic-beasts-the-crimes-of-grindelwald`,
@@ -53,32 +53,19 @@ const options = {
       page: `movie-page.html`,
       preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
       genre: `Fantastic`
-    }
-  ],
-  testClickHandler: () => {},
-  onSetFilter: () => {},
-  delayBeforePlay: 1000,
-  filterGenre: `All genres`
+    }],
+  filterHandler: () => {},
+  currentGenre: `genre`
 };
 
-function createNodeMock(element) {
-  if (element.type === `video`) {
-    return {};
-  }
-  return null;
-}
-
-it(`App correctly renders`, () => {
-  const customMockCreator = {createNodeMock};
+it(`Genre list correctly renders`, () => {
   const tree = renderer.create(
-      <App
-        moviesList={options.moviesList}
-        onSetFilter={options.onSetFilter}
-        filterGenre={options.filterGenre}
-        fullFilmsList={options.moviesList}
-        cardHeaderClickHandler={options.testClickHandler}
-        delayBeforePlay={options.delayBeforePlay}
-      />, customMockCreator).toJSON();
+      <GenreList
+        fullFilmsList={options.filmList}
+        filterHandler={options.filterHandler}
+        currentGenre={options.currentGenre}
+      />
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
