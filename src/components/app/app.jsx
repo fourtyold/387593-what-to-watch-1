@@ -5,6 +5,9 @@ import PropTypes from "prop-types";
 import {ActionCreators} from "../../reducer.js";
 import FilmsList from "../films-list/films-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
+import withActiveGenre from "../../hocs/with-active-genre/with-active-genre.js";
+
+const WrappedGenreList = withActiveGenre(GenreList);
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -102,11 +105,7 @@ class App extends React.PureComponent {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList
-            fullFilmsList={this.state.fullFilmsList}
-            filterHandler={this.props.onSetFilter}
-            currentGenre={this.props.filterGenre}
-          />
+          <WrappedGenreList/>
 
           <div className="catalog__movies-list">
             <FilmsList
@@ -140,7 +139,7 @@ class App extends React.PureComponent {
 
   componentDidMount() {
     this.setState({fullFilmsList: ActionCreators.getFilmsData()});
-    this.props.onSetFilter(`All genres`);
+    // this.props.setFilter(`All genres`);
   }
 }
 
@@ -149,7 +148,7 @@ App.propTypes = {
   cardHeaderClickHandler: PropTypes.func.isRequired,
   delayBeforePlay: PropTypes.number.isRequired,
   filterGenre: PropTypes.string.isRequired,
-  onSetFilter: PropTypes.func.isRequired
+  // setFilter: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -157,13 +156,14 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   moviesList: state.films
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onSetFilter: (genre) => {
-    dispatch(ActionCreators.setFilterGenre(genre));
-    dispatch(ActionCreators.getFilmsList(genre));
-  }
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   setFilter: (genre) => {
+//     dispatch(ActionCreators.setFilterGenre(genre));
+//     dispatch(ActionCreators.getFilmsList(genre));
+//   }
+// });
 
 export {App};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
