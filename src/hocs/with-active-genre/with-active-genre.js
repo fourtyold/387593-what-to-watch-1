@@ -1,7 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {compose} from "recompose";
 
 import {ActionCreators} from '../../reducer.js';
 
@@ -17,30 +15,15 @@ const withActiveGenre = (Component) => {
       filterHandler={props.setFilter}
       currentGenre={props.filterGenre}
       genresArray={genresArray}
-    />
+    />;
+  };
+
+  WithActiveGenre.propTypes = {
+    filterGenre: PropTypes.string.isRequired,
+    setFilter: PropTypes.func.isRequired
   };
 
   return WithActiveGenre;
+};
 
-  WithActiveGenre.propTypes = {
-    filterHandler: PropTypes.func.isRequired,
-    currentGenre: PropTypes.string.isRequired
-  };
-}
-
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  filterGenre: state.filterGenre,
-  moviesList: state.films
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  setFilter: (genre) => {
-    dispatch(ActionCreators.setFilterGenre(genre));
-    dispatch(ActionCreators.getFilmsList(genre));
-  }
-});
-
-export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    withActiveGenre
-);
+export default withActiveGenre;

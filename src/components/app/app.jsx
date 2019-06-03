@@ -12,10 +12,6 @@ const WrappedGenreList = withActiveGenre(GenreList);
 class App extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      fullFilmsList: []
-    };
   }
 
   render() {
@@ -105,13 +101,15 @@ class App extends React.PureComponent {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <WrappedGenreList/>
+          <WrappedGenreList
+            setFilter={this.props.setFilter}
+            filterGenre={this.props.filterGenre}
+          />
 
           <div className="catalog__movies-list">
             <FilmsList
               films={this.props.moviesList}
               cardHeaderClickHandler={this.props.cardHeaderClickHandler}
-              delay={this.props.delayBeforePlay}
             />
           </div>
 
@@ -138,17 +136,24 @@ class App extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.setState({fullFilmsList: ActionCreators.getFilmsData()});
-    // this.props.setFilter(`All genres`);
+    this.props.setFilter(`All genres`);
   }
 }
 
 App.propTypes = {
-  moviesList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  moviesList: PropTypes.arrayOf(PropTypes.shape({
+    image: PropTypes.shape({
+      name: PropTypes.string,
+      extension: PropTypes.string
+    }),
+    name: PropTypes.string,
+    page: PropTypes.string,
+    preview: PropTypes.string,
+    genre: PropTypes.string
+  })).isRequired,
   cardHeaderClickHandler: PropTypes.func.isRequired,
-  delayBeforePlay: PropTypes.number.isRequired,
   filterGenre: PropTypes.string.isRequired,
-  // setFilter: PropTypes.func.isRequired
+  setFilter: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -156,14 +161,13 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   moviesList: state.films
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   setFilter: (genre) => {
-//     dispatch(ActionCreators.setFilterGenre(genre));
-//     dispatch(ActionCreators.getFilmsList(genre));
-//   }
-// });
+const mapDispatchToProps = (dispatch) => ({
+  setFilter: (genre) => {
+    dispatch(ActionCreators.setFilterGenre(genre));
+    dispatch(ActionCreators.getFilmsList(genre));
+  }
+});
 
 export {App};
 
-export default connect(mapStateToProps)(App);
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
