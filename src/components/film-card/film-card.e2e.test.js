@@ -17,27 +17,24 @@ const options = {
   },
   enterHandler: jest.fn(),
   leaveHandler: jest.fn(),
-  onHeaderClickHandler: jest.fn(),
-  index: 0,
-  isPlaying: false,
+  cardHeaderClickHandler: jest.fn(),
+  isPlaying: true,
   muted: true
 };
 
 it(`Handler is called on card hover`, () => {
   const filmCard = mount(<FilmCard
     film={options.film}
-    onHeaderClick={options.onHeaderClickHandler}
+    cardHeaderClickHandler={options.cardHeaderClickHandler}
     onEnter={options.enterHandler}
     onLeave={options.leaveHandler}
-    index={options.index}
     isPlaying={options.isPlaying}
     muted={options.muted}
   />);
 
-  // const playButton = filmCard.find(`.small-movie-card__play-btn`);
-  // playButton.simulate(`click`);
   const card = filmCard.find(`.small-movie-card`);
   card.simulate(`mouseenter`);
   expect(options.enterHandler).toHaveBeenCalledTimes(1);
-  expect(options.enterHandler).toHaveBeenCalledWith(options.index);
+  card.simulate(`mouseleave`);
+  expect(options.leaveHandler).toHaveBeenCalledTimes(1);
 });

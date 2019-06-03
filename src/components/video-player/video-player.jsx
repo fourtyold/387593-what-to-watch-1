@@ -44,7 +44,10 @@ class VideoPlayer extends React.PureComponent {
 
 VideoPlayer.propTypes = {
   film: PropTypes.shape({
-    image: PropTypes.objectOf(PropTypes.string),
+    image: PropTypes.shape({
+      name: PropTypes.string,
+      extension: PropTypes.string
+    }),
     name: PropTypes.string,
     page: PropTypes.string,
     preview: PropTypes.string

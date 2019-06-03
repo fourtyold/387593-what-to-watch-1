@@ -59,8 +59,7 @@ const options = {
     }
   ],
   testClickHandler: jest.fn(),
-  onSetFilter: jest.fn(),
-  delayBeforePlay: 1000,
+  setFilter: jest.fn(),
   filterGenre: `All genres`
 };
 
@@ -68,10 +67,9 @@ it(`Click on card header works correctly`, () => {
   const app = mount(<App
     filterGenre={options.filterGenre}
     fullFilmsList={options.moviesList}
-    onSetFilter={options.onSetFilter}
+    setFilter={options.setFilter}
     moviesList={options.moviesList}
     cardHeaderClickHandler={options.testClickHandler}
-    delayBeforePlay={options.delayBeforePlay}
   />);
 
   const cardHeader = app.find(`.small-movie-card__title`);

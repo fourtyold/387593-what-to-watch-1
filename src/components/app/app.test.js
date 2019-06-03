@@ -56,8 +56,7 @@ const options = {
     }
   ],
   testClickHandler: () => {},
-  onSetFilter: () => {},
-  delayBeforePlay: 1000,
+  setFilter: () => {},
   filterGenre: `All genres`
 };
 
@@ -73,11 +72,10 @@ it(`App correctly renders`, () => {
   const tree = renderer.create(
       <App
         moviesList={options.moviesList}
-        onSetFilter={options.onSetFilter}
+        setFilter={options.setFilter}
         filterGenre={options.filterGenre}
         fullFilmsList={options.moviesList}
         cardHeaderClickHandler={options.testClickHandler}
-        delayBeforePlay={options.delayBeforePlay}
       />, customMockCreator).toJSON();
 
   expect(tree).toMatchSnapshot();
