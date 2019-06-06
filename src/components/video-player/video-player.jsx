@@ -35,22 +35,16 @@ class VideoPlayer extends React.PureComponent {
 
   _setVideoProps(obj) {
     const {film} = this.props;
-    const image = film.image;
-    obj.src = film.preview;
-    obj.poster = `img/${image.name}.${image.extension}`;
+    obj.src = film.previewVideoLink;
+    obj.poster = film.previewImage;
     obj.muted = this.props.muted;
   }
 }
 
 VideoPlayer.propTypes = {
   film: PropTypes.shape({
-    image: PropTypes.shape({
-      name: PropTypes.string,
-      extension: PropTypes.string
-    }),
-    name: PropTypes.string,
-    page: PropTypes.string,
-    preview: PropTypes.string
+    previewImage: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired
   }).isRequired,
   isPlaying: PropTypes.bool.isRequired,
   muted: PropTypes.bool,

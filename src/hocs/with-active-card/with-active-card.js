@@ -12,7 +12,6 @@ const withActiveCard = (Component) => {
       };
       this._enterHandler = this._enterHandler.bind(this);
       this._leaveHandler = this._leaveHandler.bind(this);
-      this.HANDLER_DELAY = 1000;
     }
 
     render() {
@@ -37,22 +36,17 @@ const withActiveCard = (Component) => {
     _enterHandler() {
       this.timer = setTimeout(() => {
         this.setState({isPlaying: true});
-      }, this.HANDLER_DELAY);
+      }, this.props.handlerDelay);
     }
   }
 
   WitchActiveCard.propTypes = {
     film: PropTypes.shape({
-      image: PropTypes.shape({
-        name: PropTypes.string,
-        extension: PropTypes.string
-      }),
-      name: PropTypes.string,
-      page: PropTypes.string,
-      preview: PropTypes.string,
-      genre: PropTypes.string
-    }),
-    cardHeaderClickHandler: PropTypes.func.isRequired
+      previewImage: PropTypes.string.isRequired,
+      previewVideoLink: PropTypes.string.isRequired
+    }).isRequired,
+    cardHeaderClickHandler: PropTypes.func.isRequired,
+    handlerDelay: PropTypes.number.isRequired
   };
 
   return WitchActiveCard;

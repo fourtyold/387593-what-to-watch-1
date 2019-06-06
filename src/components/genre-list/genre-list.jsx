@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 const GenreList = (props) => {
   return <ul className="catalog__genres-list">
     {props.genresArray.map((genre, i) => {

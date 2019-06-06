@@ -22,13 +22,10 @@ const FilmCard = (props) => {
 
 FilmCard.propTypes = {
   film: PropTypes.shape({
-    image: PropTypes.shape({
-      name: PropTypes.string,
-      extension: PropTypes.string
-    }),
-    name: PropTypes.string,
+    previewImage: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired,
     page: PropTypes.string,
-    preview: PropTypes.string
+    name: PropTypes.string
   }).isRequired,
   onLeave: PropTypes.func.isRequired,
   onEnter: PropTypes.func.isRequired,

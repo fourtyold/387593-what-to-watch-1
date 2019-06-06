@@ -7,16 +7,14 @@ Enzyme.configure({adapter: new Adapter()});
 
 const options = {
   film: {
-    image: {
-      name: `fantastic-beasts-the-crimes-of-grindelwald`,
-      extension: `jpg`
-    },
-    name: `Fantastic Beasts: The Crimes of Grindelwald`,
-    page: `movie-page.html`,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    name: `Moonrise Kingdom`,
+    page: `https://moonrise.html`,
+    genre: `Adventure`,
+    previewImage: `https://preview_1.jpg`,
+    previewVideoLink: `https://preview_1.mp4`
   },
-  enterHandler: jest.fn(),
   leaveHandler: jest.fn(),
+  enterHandler: jest.fn(),
   cardHeaderClickHandler: jest.fn(),
   isPlaying: true,
   muted: true
