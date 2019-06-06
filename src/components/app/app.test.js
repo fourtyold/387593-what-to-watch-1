@@ -5,59 +5,25 @@ import {App} from "./app.jsx";
 const options = {
   moviesList: [
     {
-      image: {
-        name: `fantastic-beasts-the-crimes-of-grindelwald`,
-        extension: `jpg`
-      },
-      name: `Fantastic Beasts: The Crimes of Grindelwald`,
-      page: `movie-page.html`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-      genre: `Fantastic`
+      name: `Moonrise Kingdom`,
+      page: `https://moonrise.html`,
+      genre: `Adventure`,
+      previewImage: `https://preview_1.jpg`,
+      previewVideoLink: `https://preview_1.mp4`
     },
     {
-      image: {
-        name: `bohemian-rhapsody`,
-        extension: `jpg`
-      },
-      name: `Bohemian Rhapsody`,
-      page: `movie-page.html`,
-      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      genre: `Documentary`
-    },
-    {
-      image: {
-        name: `macbeth`,
-        extension: `jpg`
-      },
-      name: `Macbeth`,
-      page: `movie-page.html`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-      genre: `Documentary`
-    },
-    {
-      image: {
-        name: `aviator`,
-        extension: `jpg`
-      },
-      name: `Aviator`,
-      page: `movie-page.html`,
-      preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-      genre: `Dramas`
-    },
-    {
-      image: {
-        name: `we-need-to-talk-about-kevin`,
-        extension: `jpg`
-      },
-      name: `We need to talk about Kevin`,
-      page: `movie-page.html`,
-      preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-      genre: `Fantastic`
+      name: `Gangs of New York`,
+      page: `https://gangs.html`,
+      genre: `Crime`,
+      previewImage: `https://preview_2.jpg`,
+      previewVideoLink: `https://preview_2.mp4`,
     }
   ],
   testClickHandler: () => {},
   setFilter: () => {},
-  filterGenre: `All genres`
+  filterGenre: `All genres`,
+  genresList: [`All genres`, `Adventure`, `Crime`],
+  delay: 1000
 };
 
 function createNodeMock(element) {
@@ -72,10 +38,11 @@ it(`App correctly renders`, () => {
   const tree = renderer.create(
       <App
         moviesList={options.moviesList}
-        setFilter={options.setFilter}
-        filterGenre={options.filterGenre}
-        fullFilmsList={options.moviesList}
         cardHeaderClickHandler={options.testClickHandler}
+        filterGenre={options.filterGenre}
+        setFilter={options.setFilter}
+        handlerDelay={options.delay}
+        genresList={options.genresList}
       />, customMockCreator).toJSON();
 
   expect(tree).toMatchSnapshot();

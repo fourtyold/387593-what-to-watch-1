@@ -291,7 +291,7 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Fantastic
+            Adventure
           </a>
         </li>
         <li
@@ -302,18 +302,7 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Documentary
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Dramas
+            Crime
           </a>
         </li>
       </ul>
@@ -334,9 +323,9 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="https://moonrise.html"
             >
-              Fantastic Beasts: The Crimes of Grindelwald
+              Moonrise Kingdom
             </a>
           </h3>
         </article>
@@ -354,69 +343,9 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="https://gangs.html"
             >
-              Bohemian Rhapsody
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <video />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Macbeth
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <video />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Aviator
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <video />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              We need to talk about Kevin
+              Gangs of New York
             </a>
           </h3>
         </article>

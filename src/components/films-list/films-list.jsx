@@ -9,6 +9,7 @@ const FilmsList = (props) => {
   return props.films.map((film, i) => {
     return <WrappedActiveCard
       film={film}
+      handlerDelay={props.handlerDelay}
       cardHeaderClickHandler={props.cardHeaderClickHandler}
       key={`film-card-${i}`}
     />;
@@ -16,16 +17,11 @@ const FilmsList = (props) => {
 };
 
 FilmsList.propTypes = {
+  handlerDelay: PropTypes.number.isRequired,
   cardHeaderClickHandler: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
-    image: PropTypes.shape({
-      name: PropTypes.string,
-      extension: PropTypes.string
-    }),
-    name: PropTypes.string,
-    page: PropTypes.string,
-    preview: PropTypes.string,
-    genre: PropTypes.string
+    previewImage: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired
   })).isRequired
 };
 

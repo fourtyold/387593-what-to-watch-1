@@ -14,9 +14,9 @@ exports[`Film card correctly renders 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="https://moonrise.html"
     >
-      Fantastic Beasts: The Crimes of Grindelwald
+      Moonrise Kingdom
     </a>
   </h3>
 </article>

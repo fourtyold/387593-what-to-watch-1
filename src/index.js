@@ -1,23 +1,35 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
+import thunk from "redux-thunk";
+import {compose} from "recompose";
 
 import App from "./components/app/app.jsx";
-import {reducer} from "./reducer.js";
+import combineReducers from "./reducer/index.js";
+import {Operation} from "./reducer/films/films.js";
+import createAPI from "./api.js";
 
-const store = createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const options = {
+  cardHeaderClickHandler: () => {},
+  handlerDelay: 1000
+};
 
 const init = () => {
-  const options = {
-    cardHeaderClickHandler: () => {},
-  };
+  const {cardHeaderClickHandler, handlerDelay} = options;
+  const api = createAPI((...args) => store.dispatch(...args));
+  const store = createStore(
+      combineReducers,
+      compose(
+          applyMiddleware(thunk.withExtraArgument(api)),
+          window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+      )
+  );
+  store.dispatch(Operation.loadFilms());
   ReactDOM.render(<Provider store={store}>
     <App
-      cardHeaderClickHandler={options.cardHeaderClickHandler}
+      cardHeaderClickHandler={cardHeaderClickHandler}
+      handlerDelay={handlerDelay}
     />
   </Provider>,
   document.querySelector(`#root`)

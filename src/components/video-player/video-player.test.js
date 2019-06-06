@@ -4,13 +4,11 @@ import VideoPlayer from "./video-player.jsx";
 
 const options = {
   film: {
-    image: {
-      name: `fantastic-beasts-the-crimes-of-grindelwald`,
-      extension: `jpg`
-    },
-    name: `Fantastic Beasts: The Crimes of Grindelwald`,
-    page: `movie-page.html`,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    name: `Moonrise Kingdom`,
+    page: `https://moonrise.html`,
+    genre: `Adventure`,
+    previewImage: `https://preview_1.jpg`,
+    previewVideoLink: `https://preview_1.mp4`
   },
   isPlaying: false,
   muted: true
