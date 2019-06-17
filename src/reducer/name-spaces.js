@@ -1,6 +1,7 @@
 const NameSpaces = {
   FILMS: `FILMS`,
-  FILTER: `FILTER`
+  FILTER: `FILTER`,
+  USER: `USER`
 };
 
 export default NameSpaces;

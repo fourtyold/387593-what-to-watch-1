@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import {App} from "./app.jsx";
+import Main from "./main.jsx";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -19,35 +19,31 @@ const options = {
       page: `https://gangs.html`,
       genre: `Crime`,
       previewImage: `https://preview_2.jpg`,
-      previewVideoLink: `https://preview_2.mp4`,
+      previewVideoLink: `https://preview_2.mp4`
     }
   ],
   testClickHandler: jest.fn(),
-  setFilter: jest.fn(),
   filterGenre: `All genres`,
-  genresList: [`All genres`, `Crime`, `Adventure`],
-  delay: 1000,
-  isAuthorizationRequired: false,
-  loginHandler: jest.fn(),
+  setFilter: jest.fn(),
   requireAuthorization: jest.fn(),
-  avatarUrl: `some-pick.jpg`
+  delay: 1000,
+  genresList: [`All genres`, `Crime`, `Adventure`],
+  avatarUrl: null
 };
 
-it(`Click on card header works correctly`, () => {
-  const app = mount(<App
+it(`Click on login link works correctly`, () => {
+  const main = mount(<Main
     moviesList={options.moviesList}
     cardHeaderClickHandler={options.testClickHandler}
-    setFilter={options.setFilter}
     filterGenre={options.filterGenre}
-    genresList={options.genresList}
-    handlerDelay={options.delay}
-    isAuthorizationRequired={options.isAuthorizationRequired}
-    loginHandler={options.loginHandler}
+    setFilter={options.setFilter}
     requireAuthorization={options.requireAuthorization}
+    handlerDelay={options.delay}
+    genresList={options.genresList}
     avatarUrl={options.avatarUrl}
   />);
 
-  const cardHeader = app.find(`.small-movie-card__title`);
-  cardHeader.at(0).simulate(`click`);
-  expect(options.testClickHandler).toHaveBeenCalledTimes(1);
+  const loginLink = main.find(`.user-block__link`);
+  loginLink.simulate(`click`);
+  expect(options.requireAuthorization).toHaveBeenCalledTimes(1);
 });

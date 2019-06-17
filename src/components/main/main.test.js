@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {App} from "./app.jsx";
+import Main from "./main.jsx";
 
 const options = {
   moviesList: [
@@ -20,13 +20,11 @@ const options = {
     }
   ],
   testClickHandler: () => {},
-  setFilter: () => {},
   filterGenre: `All genres`,
-  genresList: [`All genres`, `Adventure`, `Crime`],
-  delay: 1000,
-  isAuthorizationRequired: false,
-  loginHandler: () => {},
+  setFilter: () => {},
   requireAuthorization: () => {},
+  delay: 1000,
+  genresList: [`All genres`, `Adventure`, `Crime`],
   avatarUrl: `some-pick.jpg`
 };
 
@@ -37,19 +35,17 @@ function createNodeMock(element) {
   return null;
 }
 
-it(`App correctly renders`, () => {
+it(`Main correctly renders`, () => {
   const customMockCreator = {createNodeMock};
   const tree = renderer.create(
-      <App
+      <Main
         moviesList={options.moviesList}
         cardHeaderClickHandler={options.testClickHandler}
-        setFilter={options.setFilter}
         filterGenre={options.filterGenre}
-        genresList={options.genresList}
-        handlerDelay={options.delay}
-        isAuthorizationRequired={options.isAuthorizationRequired}
-        loginHandler={options.loginHandler}
+        setFilter={options.setFilter}
         requireAuthorization={options.requireAuthorization}
+        handlerDelay={options.delay}
+        genresList={options.genresList}
         avatarUrl={options.avatarUrl}
       />, customMockCreator).toJSON();
 

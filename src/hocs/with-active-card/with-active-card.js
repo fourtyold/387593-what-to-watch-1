@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const withActiveCard = (Component) => {
-  class WitchActiveCard extends React.PureComponent {
+  class WithActiveCard extends React.PureComponent {
     constructor(props) {
       super(props);
 
@@ -40,7 +40,7 @@ const withActiveCard = (Component) => {
     }
   }
 
-  WitchActiveCard.propTypes = {
+  WithActiveCard.propTypes = {
     film: PropTypes.shape({
       previewImage: PropTypes.string.isRequired,
       previewVideoLink: PropTypes.string.isRequired
@@ -49,7 +49,7 @@ const withActiveCard = (Component) => {
     handlerDelay: PropTypes.number.isRequired
   };
 
-  return WitchActiveCard;
+  return WithActiveCard;
 };
 
 export default withActiveCard;
