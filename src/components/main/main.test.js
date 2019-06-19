@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
+import {HashRouter} from "react-router-dom";
 
 const options = {
   moviesList: [
@@ -37,17 +38,18 @@ function createNodeMock(element) {
 
 it(`Main correctly renders`, () => {
   const customMockCreator = {createNodeMock};
-  const tree = renderer.create(
-      <Main
-        moviesList={options.moviesList}
-        cardHeaderClickHandler={options.testClickHandler}
-        filterGenre={options.filterGenre}
-        setFilter={options.setFilter}
-        requireAuthorization={options.requireAuthorization}
-        handlerDelay={options.delay}
-        genresList={options.genresList}
-        avatarUrl={options.avatarUrl}
-      />, customMockCreator).toJSON();
+  const tree = renderer.create(<HashRouter>
+    <Main
+      moviesList={options.moviesList}
+      cardHeaderClickHandler={options.testClickHandler}
+      filterGenre={options.filterGenre}
+      setFilter={options.setFilter}
+      requireAuthorization={options.requireAuthorization}
+      handlerDelay={options.delay}
+      genresList={options.genresList}
+      avatarUrl={options.avatarUrl}
+    />
+  </HashRouter>, customMockCreator).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

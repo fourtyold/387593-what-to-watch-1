@@ -4,6 +4,7 @@ import {Provider} from "react-redux";
 import {createStore, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
 import {compose} from "recompose";
+import {BrowserRouter} from "react-router-dom";
 
 import App from "./components/app/app.jsx";
 import combineReducers from "./reducer/index.js";
@@ -27,10 +28,12 @@ const init = () => {
   );
   store.dispatch(Operation.loadFilms());
   ReactDOM.render(<Provider store={store}>
-    <App
-      cardHeaderClickHandler={cardHeaderClickHandler}
-      handlerDelay={handlerDelay}
-    />
+    <BrowserRouter>
+      <App
+        cardHeaderClickHandler={cardHeaderClickHandler}
+        handlerDelay={handlerDelay}
+      />
+    </BrowserRouter>
   </Provider>,
   document.querySelector(`#root`)
   );
