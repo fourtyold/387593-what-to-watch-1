@@ -2,6 +2,7 @@ import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {App} from "./app.jsx";
+import {HashRouter} from "react-router-dom";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -34,18 +35,20 @@ const options = {
 };
 
 it(`Click on card header works correctly`, () => {
-  const app = mount(<App
-    moviesList={options.moviesList}
-    cardHeaderClickHandler={options.testClickHandler}
-    setFilter={options.setFilter}
-    filterGenre={options.filterGenre}
-    genresList={options.genresList}
-    handlerDelay={options.delay}
-    isAuthorizationRequired={options.isAuthorizationRequired}
-    loginHandler={options.loginHandler}
-    requireAuthorization={options.requireAuthorization}
-    avatarUrl={options.avatarUrl}
-  />);
+  const app = mount(<HashRouter>
+    <App
+      moviesList={options.moviesList}
+      cardHeaderClickHandler={options.testClickHandler}
+      setFilter={options.setFilter}
+      filterGenre={options.filterGenre}
+      genresList={options.genresList}
+      handlerDelay={options.delay}
+      isAuthorizationRequired={options.isAuthorizationRequired}
+      loginHandler={options.loginHandler}
+      requireAuthorization={options.requireAuthorization}
+      avatarUrl={options.avatarUrl}
+    />
+  </HashRouter>);
 
   const cardHeader = app.find(`.small-movie-card__title`);
   cardHeader.at(0).simulate(`click`);

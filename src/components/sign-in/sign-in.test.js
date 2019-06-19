@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import SignIn from "./sign-in.jsx";
+import {HashRouter} from "react-router-dom";
 
 const options = {
   loginHandler: () => {},
@@ -9,12 +10,13 @@ const options = {
 };
 
 it(`Sign-in renders correctly`, () => {
-  const tree = renderer.create(
-      <SignIn
-        loginHandler={options.loginHandler}
-        emailChangeHandler={options.emailChangeHandler}
-        passwordChangeHandler={options.passwordChangeHandler}
-      />).toJSON();
+  const tree = renderer.create(<HashRouter>
+    <SignIn
+      loginHandler={options.loginHandler}
+      emailChangeHandler={options.emailChangeHandler}
+      passwordChangeHandler={options.passwordChangeHandler}
+    />
+  </HashRouter>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
