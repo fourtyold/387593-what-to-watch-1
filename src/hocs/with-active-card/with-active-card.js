@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {HANDLER_DELAY} from "../../constants.js";
 
 const withActiveCard = (Component) => {
   class WithActiveCard extends React.PureComponent {
@@ -16,14 +17,17 @@ const withActiveCard = (Component) => {
 
     render() {
       const {isPlaying} = this.state;
-      const {film, cardHeaderClickHandler} = this.props;
+      const {film} = this.props;
       return <Component
         film={film}
-        cardHeaderClickHandler={cardHeaderClickHandler}
         onEnter={this._enterHandler}
         onLeave={this._leaveHandler}
         isPlaying={isPlaying}
       />;
+    }
+
+    componentWillUnmount() {
+      this._leaveHandler();
     }
 
     _leaveHandler() {
@@ -36,7 +40,7 @@ const withActiveCard = (Component) => {
     _enterHandler() {
       this.timer = setTimeout(() => {
         this.setState({isPlaying: true});
-      }, this.props.handlerDelay);
+      }, HANDLER_DELAY);
     }
   }
 
@@ -44,9 +48,7 @@ const withActiveCard = (Component) => {
     film: PropTypes.shape({
       previewImage: PropTypes.string.isRequired,
       previewVideoLink: PropTypes.string.isRequired
-    }).isRequired,
-    cardHeaderClickHandler: PropTypes.func.isRequired,
-    handlerDelay: PropTypes.number.isRequired
+    }).isRequired
   };
 
   return WithActiveCard;

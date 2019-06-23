@@ -1,5 +1,4 @@
 const initialState = {
-  isAuthorizationRequired: false,
   id: null,
   email: null,
   name: null,
@@ -7,7 +6,6 @@ const initialState = {
 };
 
 const ActionType = {
-  REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
   SAVE_LOGIN_DATA: `SAVE_LOGIN_DATA`
 };
 
@@ -19,18 +17,12 @@ const Operation = {
       password
     }).then((response) => {
       dispatch(ActionCreators.saveLoginData(response.data));
-      dispatch(ActionCreators.requireAuthorization(false));
+      history.back();
     });
   },
 };
 
 const ActionCreators = {
-  requireAuthorization: (status) => {
-    return {
-      type: ActionType.REQUIRE_AUTHORIZATION,
-      payload: status
-    };
-  },
   saveLoginData: (loginData) => {
     return {
       type: ActionType.SAVE_LOGIN_DATA,
@@ -41,10 +33,6 @@ const ActionCreators = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.REQUIRE_AUTHORIZATION:
-      return Object.assign({}, state, {
-        isAuthorizationRequired: action.payload
-      });
     case ActionType.SAVE_LOGIN_DATA:
       return Object.assign({}, state, {
         isAuthorizationRequired: false,

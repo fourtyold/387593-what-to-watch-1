@@ -1,12 +1,5 @@
 import {ActionType, ActionCreators, reducer} from "./user.js";
 
-it(`Require authorization action works correctly`, () => {
-  expect(ActionCreators.requireAuthorization(true)).toEqual({
-    type: ActionType.REQUIRE_AUTHORIZATION,
-    payload: true
-  });
-});
-
 it(`Save login data action works correctly`, () => {
   expect(ActionCreators.saveLoginData({data: true})).toEqual({
     type: ActionType.SAVE_LOGIN_DATA,
@@ -16,22 +9,10 @@ it(`Save login data action works correctly`, () => {
 
 it(`Reducer return initial state`, () => {
   expect(reducer(undefined, {})).toEqual({
-    isAuthorizationRequired: false,
     id: null,
     email: null,
     name: null,
     avatarUrl: null
-  });
-});
-
-it(`Reducer change authorization state correctly`, () => {
-  expect(reducer({
-    isAuthorizationRequired: false
-  }, {
-    type: ActionType.REQUIRE_AUTHORIZATION,
-    payload: true
-  })).toEqual({
-    isAuthorizationRequired: true
   });
 });
 

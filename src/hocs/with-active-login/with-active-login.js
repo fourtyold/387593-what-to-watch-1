@@ -1,5 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {compose} from "recompose";
+import {Operation} from "../../reducer/user/user.js";
+
 
 const withActiveLogin = (Component) => {
   class WithActiveLogin extends React.PureComponent {
@@ -32,7 +36,8 @@ const withActiveLogin = (Component) => {
       this.setState({password: event.target.value});
     }
 
-    _loginHandler() {
+    _loginHandler(evt) {
+      evt.preventDefault();
       if (this.state.email && this.state.password) {
         this.props.loginHandler(this.state);
       }
@@ -46,4 +51,17 @@ const withActiveLogin = (Component) => {
   return WithActiveLogin;
 };
 
-export default withActiveLogin;
+const mapDispatchToProps = (dispatch) => ({
+  loginHandler: (userData) => {
+    dispatch(Operation.sendLoginData(userData));
+  }
+});
+
+const composedWithActiveLogin = compose(
+    connect(null, mapDispatchToProps),
+    withActiveLogin
+);
+
+export {withActiveLogin};
+
+export default composedWithActiveLogin;

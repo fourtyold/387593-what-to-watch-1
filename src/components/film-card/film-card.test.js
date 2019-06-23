@@ -1,9 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {HashRouter} from "react-router-dom";
 import FilmCard from "./film-card.jsx";
 
 const options = {
   film: {
+    id: 1,
     name: `Moonrise Kingdom`,
     page: `https://moonrise.html`,
     genre: `Adventure`,
@@ -12,7 +14,6 @@ const options = {
   },
   leaveHandler: () => {},
   enterHandler: () => {},
-  onHeaderClickHandler: () => {},
   isPlaying: false,
   muted: true
 };
@@ -26,15 +27,15 @@ function createNodeMock(element) {
 
 it(`Film card correctly renders`, () => {
   const customMockCreator = {createNodeMock};
-  const tree = renderer.create(
-      <FilmCard
-        film={options.film}
-        onLeave={options.leaveHandler}
-        onEnter={options.enterHandler}
-        onHeaderClick={options.onHeaderClickHandler}
-        isPlaying={options.isPlaying}
-        muted={options.muted}
-      />, customMockCreator).toJSON();
+  const tree = renderer.create(<HashRouter>
+    <FilmCard
+      film={options.film}
+      onLeave={options.leaveHandler}
+      onEnter={options.enterHandler}
+      isPlaying={options.isPlaying}
+      muted={options.muted}
+    />
+  </HashRouter>, customMockCreator).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

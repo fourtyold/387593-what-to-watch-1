@@ -168,16 +168,13 @@ Array [
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
+        <a
+          className="user-block__link"
+          href="#/login"
+          onClick={[Function]}
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="https://es31-server.appspot.comsome-pick.jpg"
-            width="63"
-          />
-        </div>
+          Sign in
+        </a>
       </div>
     </header>
     <div
@@ -275,7 +272,7 @@ Array [
         className="catalog__genres-list"
       >
         <li
-          className="catalog__genres-item catalog__genres-item--active"
+          className="catalog__genres-item"
         >
           <a
             className="catalog__genres-link"
@@ -285,73 +282,10 @@ Array [
             All genres
           </a>
         </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Adventure
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Crime
-          </a>
-        </li>
       </ul>
       <div
         className="catalog__movies-list"
-      >
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <video />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="https://moonrise.html"
-            >
-              Moonrise Kingdom
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div>
-            <video />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="https://gangs.html"
-            >
-              Gangs of New York
-            </a>
-          </h3>
-        </article>
-      </div>
+      />
       <div
         className="catalog__more"
       >
