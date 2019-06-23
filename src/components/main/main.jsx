@@ -1,12 +1,14 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 import FilmsList from "../films-list/films-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
-import withActiveGenre from "../../hocs/with-active-genre/with-active-genre.js";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import {getAvatarUrl} from "../../reducer/user/selectors.js";
 
-const WrappedGenreList = withActiveGenre(GenreList);
+const WrappedGenreList = withActiveItem(GenreList);
 
 const Main = (props) => {
 
@@ -99,18 +101,10 @@ const Main = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <WrappedGenreList
-          setFilter={props.setFilter}
-          filterGenre={props.filterGenre}
-          genresList={props.genresList}
-        />
+        <WrappedGenreList/>
 
         <div className="catalog__movies-list">
-          <FilmsList
-            films={props.moviesList}
-            cardHeaderClickHandler={props.cardHeaderClickHandler}
-            handlerDelay={props.handlerDelay}
-          />
+          <FilmsList/>
         </div>
 
         <div className="catalog__more">
@@ -136,21 +130,16 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  moviesList: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    page: PropTypes.string,
-    genre: PropTypes.string
-  })).isRequired,
-  cardHeaderClickHandler: PropTypes.func.isRequired,
-  filterGenre: PropTypes.string.isRequired,
-  setFilter: PropTypes.func.isRequired,
-  requireAuthorization: PropTypes.func.isRequired,
-  handlerDelay: PropTypes.number.isRequired,
-  genresList: PropTypes.arrayOf(PropTypes.string),
   avatarUrl: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object
   ])
 };
 
-export default Main;
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  avatarUrl: getAvatarUrl(state)
+});
+
+export {Main};
+
+export default connect(mapStateToProps)(Main);

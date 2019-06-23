@@ -1,5 +1,5 @@
 import React from "react";
-import Enzyme, {mount} from "enzyme";
+import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import FilmCard from "./film-card.jsx";
 
@@ -7,6 +7,7 @@ Enzyme.configure({adapter: new Adapter()});
 
 const options = {
   film: {
+    id: 1,
     name: `Moonrise Kingdom`,
     page: `https://moonrise.html`,
     genre: `Adventure`,
@@ -15,15 +16,13 @@ const options = {
   },
   leaveHandler: jest.fn(),
   enterHandler: jest.fn(),
-  cardHeaderClickHandler: jest.fn(),
   isPlaying: true,
   muted: true
 };
 
 it(`Handler is called on card hover`, () => {
-  const filmCard = mount(<FilmCard
+  const filmCard = shallow(<FilmCard
     film={options.film}
-    cardHeaderClickHandler={options.cardHeaderClickHandler}
     onEnter={options.enterHandler}
     onLeave={options.leaveHandler}
     isPlaying={options.isPlaying}

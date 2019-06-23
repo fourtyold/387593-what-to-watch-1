@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
+import {Link} from "react-router-dom";
 
 const FilmCard = (props) => {
   return <article className="small-movie-card catalog__movies-card"
@@ -14,8 +15,8 @@ const FilmCard = (props) => {
       isPlaying={props.isPlaying}
       muted={props.muted}
     />
-    <h3 className="small-movie-card__title" onClick={props.cardHeaderClickHandler}>
-      <a className="small-movie-card__link" href={props.film.page}>{props.film.name}</a>
+    <h3 className="small-movie-card__title">
+      <Link to={{pathname: `/film/${props.film.id}`}} className="small-movie-card__link">{props.film.name}</Link>
     </h3>
   </article>;
 };
@@ -24,12 +25,11 @@ FilmCard.propTypes = {
   film: PropTypes.shape({
     previewImage: PropTypes.string.isRequired,
     previewVideoLink: PropTypes.string.isRequired,
-    page: PropTypes.string,
-    name: PropTypes.string
+    name: PropTypes.string,
+    id: PropTypes.number.isRequired
   }).isRequired,
   onLeave: PropTypes.func.isRequired,
   onEnter: PropTypes.func.isRequired,
-  cardHeaderClickHandler: PropTypes.func,
   width: PropTypes.number,
   height: PropTypes.number,
   isPlaying: PropTypes.bool.isRequired,

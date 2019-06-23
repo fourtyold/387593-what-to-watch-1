@@ -1,9 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import withActiveGenre from "./with-active-genre.js";
+import withActiveItem from "./with-active-item.js";
 
 const MockComponent = () => <div />;
-const MockComponentWrapped = withActiveGenre(MockComponent);
+const MockComponentWrapped = withActiveItem(MockComponent);
 
 const options = {
   filterGenre: `All genres`,

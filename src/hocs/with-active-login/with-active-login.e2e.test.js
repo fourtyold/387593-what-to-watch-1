@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import withActiveLogin from "./with-active-login.js";
+import {withActiveLogin} from "./with-active-login.js";
 
 Enzyme.configure({adapter: new Adapter()});
 

@@ -35,14 +35,10 @@ it(`Should make a coorect API call to /login`, () => {
 
   return sendLoginData(dispatch, jest.fn(), api)
     .then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(2);
+      expect(dispatch).toHaveBeenCalledTimes(1);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: userActionType.SAVE_LOGIN_DATA,
         payload: {fake: true}
-      });
-      expect(dispatch).toHaveBeenNthCalledWith(2, {
-        type: userActionType.REQUIRE_AUTHORIZATION,
-        payload: false
       });
     });
 });

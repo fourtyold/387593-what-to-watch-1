@@ -14,7 +14,8 @@ exports[`Film card correctly renders 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="https://moonrise.html"
+      href="#/film/1"
+      onClick={[Function]}
     >
       Moonrise Kingdom
     </a>

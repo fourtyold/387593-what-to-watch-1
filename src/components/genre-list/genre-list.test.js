@@ -1,11 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import GenreList from "./genre-list.jsx";
+import {GenreList} from "./genre-list.jsx";
 
 const options = {
   genresArray: [`All genres`, `Fantastic`, `Documentary`, `Dramas`],
   filterHandler: () => {},
-  currentGenre: `genre`
+  currentGenre: `genre`,
+  onSelect: () => {},
+  activeItem: `genre`
 };
 
 it(`Genre list correctly renders`, () => {
@@ -14,6 +16,8 @@ it(`Genre list correctly renders`, () => {
         genresArray={options.genresArray}
         filterHandler={options.filterHandler}
         currentGenre={options.currentGenre}
+        onSelect={options.onSelect}
+        activeItem={options.activeItem}
       />
   ).toJSON();
 

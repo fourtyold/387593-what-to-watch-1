@@ -25,4 +25,14 @@ const getFilteredFilmsList = createSelector(
     }
 );
 
-export {getGenresList, getFilteredFilmsList};
+const getFilmById = (state, props) => {
+  const fullFilmsList = getFullFilmsList(state);
+  for (let i = 0; i < fullFilmsList.length; i++) {
+    if (fullFilmsList[i].id === Number(props.match.params.id)) {
+      return fullFilmsList[i];
+    }
+  }
+  return null;
+};
+
+export {getGenresList, getFilteredFilmsList, getFilmById};

@@ -12,11 +12,11 @@ Array [
     </div>
     <h3
       className="small-movie-card__title"
-      onClick={[Function]}
     >
       <a
         className="small-movie-card__link"
-        href="https://moonrise.html"
+        href="#/film/1"
+        onClick={[Function]}
       >
         Moonrise Kingdom
       </a>
@@ -32,11 +32,11 @@ Array [
     </div>
     <h3
       className="small-movie-card__title"
-      onClick={[Function]}
     >
       <a
         className="small-movie-card__link"
-        href="https://gangs.html"
+        href="#/film/1"
+        onClick={[Function]}
       >
         Gangs of New York
       </a>

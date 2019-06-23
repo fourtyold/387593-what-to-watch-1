@@ -1,7 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import FilmCard from "../../components/film-card/film-card.jsx";
 import withActiveCard from "./with-active-card.js";
 
 Enzyme.configure({adapter: new Adapter()});
@@ -15,23 +15,29 @@ const options = {
     previewVideoLink: `https://preview_1.mp4`
   },
   enterHandler: jest.fn(),
-  leaveHandler: jest.fn(),
-  cardHeaderClickHandler: jest.fn(),
-  isPlaying: true,
-  delay: 1000
+  leaveHandler: jest.fn()
 };
 
-const MockComponentWrapped = withActiveCard(FilmCard);
+const MockComponent = (props) => (
+  <div
+    onMouseEnter={props.onEnter}
+    onMouseLeave={props.onLeave}
+  />
+);
+
+MockComponent.propTypes = {
+  onEnter: PropTypes.func.isRequired,
+  onLeave: PropTypes.func.isRequired
+};
+
+const MockComponentWrapped = withActiveCard(MockComponent);
 
 it(`On mouse enter component state property changes to true`, () => {
   const filmCard = mount(
       <MockComponentWrapped
         film={options.film}
-        isPlaying={!options.isPlaying}
         onEnter={options.enterHandler}
         onLeave={options.leaveHandler}
-        cardHeaderClickHandler={options.cardHeaderClickHandler}
-        handlerDelay={options.delay}
       />
   );
   filmCard.simulate(`mouseEnter`);
@@ -44,11 +50,8 @@ it(`On mouse leave component state property changes to false`, () => {
   const filmCard = mount(
       <MockComponentWrapped
         film={options.film}
-        isPlaying={options.isPlaying}
         onEnter={options.enterHandler}
         onLeave={options.leaveHandler}
-        cardHeaderClickHandler={options.cardHeaderClickHandler}
-        handlerDelay={options.delay}
       />
   );
   filmCard.simulate(`mouseLeave`);

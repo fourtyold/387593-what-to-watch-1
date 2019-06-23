@@ -11,13 +11,7 @@ import combineReducers from "./reducer/index.js";
 import {Operation} from "./reducer/films/films.js";
 import createAPI from "./api.js";
 
-const options = {
-  cardHeaderClickHandler: () => {},
-  handlerDelay: 1000
-};
-
 const init = () => {
-  const {cardHeaderClickHandler, handlerDelay} = options;
   const api = createAPI((...args) => store.dispatch(...args));
   const store = createStore(
       combineReducers,
@@ -29,10 +23,7 @@ const init = () => {
   store.dispatch(Operation.loadFilms());
   ReactDOM.render(<Provider store={store}>
     <BrowserRouter>
-      <App
-        cardHeaderClickHandler={cardHeaderClickHandler}
-        handlerDelay={handlerDelay}
-      />
+      <App/>
     </BrowserRouter>
   </Provider>,
   document.querySelector(`#root`)
