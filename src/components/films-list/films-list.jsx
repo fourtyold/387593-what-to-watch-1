@@ -9,7 +9,9 @@ import {getFilteredFilmsList} from "../../reducer/films/selectors.js";
 const WrappedActiveCard = withActiveCard(FilmCard);
 
 const FilmsList = (props) => {
-  return props.films.map((film, i) => {
+  const filmsNumberLimit = props.filmsShowNumber || props.films.length;
+  const renderFilmsArray = props.films.filter((film, i) => i < filmsNumberLimit);
+  return renderFilmsArray.map((film, i) => {
     return <WrappedActiveCard
       film={film}
       handlerDelay={props.handlerDelay}
@@ -22,11 +24,13 @@ FilmsList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({
     previewImage: PropTypes.string.isRequired,
     previewVideoLink: PropTypes.string.isRequired
-  })).isRequired
+  })).isRequired,
+  id: PropTypes.number,
+  filmsShowNumber: PropTypes.number
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  films: getFilteredFilmsList(state),
+  films: getFilteredFilmsList(state, ownProps.id),
 });
 
 export {FilmsList};

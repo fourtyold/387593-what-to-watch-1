@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import {TabsTypes, tabsNames} from "../../constants.js";
 import OverviewTab from "../overview-tab/overview-tab.jsx";
 import DetailsTab from "../details-tab/details-tab.jsx";
+import ReviewsTab from "../reviews-tab/reviews-tab.jsx";
 
 const MovieTabs = (props) => {
   const tabsItems = tabsNames.map((tabName, i) => {
@@ -25,7 +26,7 @@ const MovieTabs = (props) => {
       contentBlock = <DetailsTab film={props.film}/>;
       break;
     case TabsTypes.REVIEWS:
-      contentBlock = <DetailsTab film={props.film}/>;
+      contentBlock = <ReviewsTab film={props.film}/>;
       break;
     default:
       contentBlock = <OverviewTab film={props.film}/>;
