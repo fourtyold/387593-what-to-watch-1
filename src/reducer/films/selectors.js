@@ -4,7 +4,12 @@ import {getFilterGenre} from "../filter/selectors.js";
 
 const NAMESPACE = NameSpaces.FILMS;
 
-const getFullFilmsList = (state) => state[NAMESPACE].fullFilmsList;
+const getFullFilmsList = (state, id) => {
+  if (id) {
+    return state[NAMESPACE].fullFilmsList.filter((film) => film.id !== id);
+  }
+  return state[NAMESPACE].fullFilmsList;
+};
 
 const getGenresList = (state) => {
   const genres = getFullFilmsList(state).map((film) => film.genre);

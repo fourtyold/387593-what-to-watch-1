@@ -6,6 +6,9 @@ const DetailsTab = (props) => {
   const {film} = props;
   const hours = Math.floor(film.runTime / MINUTES_PER_HOUR);
   const minutes = film.runTime % MINUTES_PER_HOUR;
+  const actorsBlock = film.starring.map((actor) => {
+    return `${actor}\n`;
+  });
 
   return <Fragment>
     <div className="movie-card__text movie-card__row">
@@ -17,7 +20,7 @@ const DetailsTab = (props) => {
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Starring</strong>
           <span className="movie-card__details-value">
-
+            {actorsBlock}
           </span>
         </p>
       </div>
