@@ -5,8 +5,10 @@ import {connect} from "react-redux";
 
 import FilmsList from "../films-list/films-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
+import ShowMore from "../show-more/show-more.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {getAvatarUrl} from "../../reducer/user/selectors.js";
+import {getFilteredFilmsLength} from "../../reducer/films/selectors.js";
 
 const WrappedGenreList = withActiveItem(GenreList);
 
@@ -17,6 +19,9 @@ const Main = (props) => {
       <img src={`https://es31-server.appspot.com${props.avatarUrl}`} alt="User avatar" width="63" height="63" />
     </div> :
     <Link to="/login" className="user-block__link">Sign in</Link>;
+
+  const showMoreBlock = props.filmsShowNumber < props.filmsArrayLength ?
+    <ShowMore increaseFilmsNumber={props.increaseFilmsNumber}/> : null;
 
   return <Fragment>
     <div className="visually-hidden">
@@ -101,15 +106,16 @@ const Main = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <WrappedGenreList/>
+        <WrappedGenreList
+          resetFilmsNumber={props.resetFilmsNumber}
+        />
 
         <div className="catalog__movies-list">
-          <FilmsList/>
+          <FilmsList
+            filmsShowNumber={props.filmsShowNumber}
+          />
         </div>
-
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div>
+        {showMoreBlock}
       </section>
 
       <footer className="page-footer">
@@ -133,11 +139,16 @@ Main.propTypes = {
   avatarUrl: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object
-  ])
+  ]),
+  filmsShowNumber: PropTypes.number.isRequired,
+  resetFilmsNumber: PropTypes.func.isRequired,
+  filmsArrayLength: PropTypes.number.isRequired,
+  increaseFilmsNumber: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  avatarUrl: getAvatarUrl(state)
+  avatarUrl: getAvatarUrl(state),
+  filmsArrayLength: getFilteredFilmsLength(state)
 });
 
 export {Main};

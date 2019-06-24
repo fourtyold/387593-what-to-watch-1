@@ -7,7 +7,8 @@ const options = {
   filterHandler: () => {},
   currentGenre: `genre`,
   onSelect: () => {},
-  activeItem: `genre`
+  activeItem: `genre`,
+  resetFilmsNumber: () => {}
 };
 
 it(`Genre list correctly renders`, () => {
@@ -18,6 +19,7 @@ it(`Genre list correctly renders`, () => {
         currentGenre={options.currentGenre}
         onSelect={options.onSelect}
         activeItem={options.activeItem}
+        resetFilmsNumber={options.resetFilmsNumber}
       />
   ).toJSON();
 
