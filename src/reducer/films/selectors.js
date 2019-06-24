@@ -30,6 +30,13 @@ const getFilteredFilmsList = createSelector(
     }
 );
 
+const getFilteredFilmsLength = createSelector(
+    getFilteredFilmsList,
+    (filmsArray) => {
+      return filmsArray.length;
+    }
+);
+
 const getFilmById = (state, props) => {
   const fullFilmsList = getFullFilmsList(state);
   for (let i = 0; i < fullFilmsList.length; i++) {
@@ -40,4 +47,4 @@ const getFilmById = (state, props) => {
   return null;
 };
 
-export {getGenresList, getFilteredFilmsList, getFilmById};
+export {getGenresList, getFilteredFilmsList, getFilmById, getFilteredFilmsLength};

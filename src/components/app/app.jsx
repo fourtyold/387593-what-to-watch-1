@@ -7,14 +7,16 @@ import Favorites from "../favorites/favorites.jsx";
 import MovieDetails from "../movie-details/movie-details.jsx";
 import withActiveLogin from "../../hocs/with-active-login/with-active-login.js";
 import withPrivateRoute from "../../hocs/with-private-route/with-private-route.js";
+import withFilmsNumber from "../../hocs/with-films-number/with-films-number.js";
 
 const WrappedSignIn = withActiveLogin(SignIn);
 const WrappedFavorites = withPrivateRoute(Favorites);
+const WrappedMain = withFilmsNumber(Main);
 
 const App = () => {
   return <Switch>
 
-    <Route path="/" exact render={() => <Main/>}/>
+    <Route path="/" exact render={() => <WrappedMain/>}/>
 
     <Route path="/login" component={WrappedSignIn}/>
 

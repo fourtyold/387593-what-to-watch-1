@@ -17,3 +17,7 @@ export const RatingTresholds = [
 export const MINUTES_PER_HOUR = 60;
 
 export const HANDLER_DELAY = 1000;
+
+export const INITIAL_FILMS_NUMBER = 20;
+
+export const FILMS_SHOW_STEP = 20;

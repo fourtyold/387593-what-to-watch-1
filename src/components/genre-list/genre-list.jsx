@@ -13,6 +13,7 @@ const GenreList = (props) => {
         <a href="#" className="catalog__genres-link" onClick={() => {
           props.onSelect(genre);
           props.filterHandler(genre);
+          props.resetFilmsNumber();
         }}>{genre}</a>
       </li>);
     })}
@@ -24,7 +25,8 @@ GenreList.propTypes = {
   filterHandler: PropTypes.func.isRequired,
   currentGenre: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
-  activeItem: PropTypes.string.isRequired
+  activeItem: PropTypes.string.isRequired,
+  resetFilmsNumber: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
