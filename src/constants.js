@@ -21,3 +21,5 @@ export const HANDLER_DELAY = 1000;
 export const INITIAL_FILMS_NUMBER = 20;
 
 export const FILMS_SHOW_STEP = 20;
+
+export const VIDEO_UPDATE_FREQ = 1;

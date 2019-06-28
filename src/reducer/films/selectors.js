@@ -47,4 +47,6 @@ const getFilmById = (state, props) => {
   return null;
 };
 
-export {getGenresList, getFilteredFilmsList, getFilmById, getFilteredFilmsLength};
+const getPromoFilm = (state) => state[NAMESPACE].promoFilm;
+
+export {getGenresList, getFilteredFilmsList, getFilmById, getFilteredFilmsLength, getPromoFilm};

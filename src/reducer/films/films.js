@@ -1,9 +1,11 @@
 const initialState = {
-  fullFilmsList: []
+  fullFilmsList: [],
+  promoFilm: {}
 };
 
 const ActionType = {
-  LOAD_FILMS: `LOAD_FILMS`
+  LOAD_FILMS: `LOAD_FILMS`,
+  LOAD_PROMO: `LOAD_PROMO`
 };
 
 const transformFilmsData = (films) => {
@@ -37,6 +39,13 @@ const Operation = {
         const transformedFilmsData = transformFilmsData(response.data);
         dispatch(ActionCreators.loadFilms(transformedFilmsData));
       });
+  },
+  loadPromo: () => (dispatch, _getState, api) => {
+    return api.get(`/films/promo`)
+      .then((response) => {
+        const transformedPromoData = transformFilmsData([response.data]);
+        dispatch(ActionCreators.loadPromo(transformedPromoData[0]));
+      });
   }
 };
 
@@ -46,6 +55,12 @@ const ActionCreators = {
       type: ActionType.LOAD_FILMS,
       payload: films
     };
+  },
+  loadPromo: (promo) => {
+    return {
+      type: ActionType.LOAD_PROMO,
+      payload: promo
+    };
   }
 };
 
@@ -54,6 +69,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FILMS:
       return Object.assign({}, state, {
         fullFilmsList: action.payload
+      });
+    case ActionType.LOAD_PROMO:
+      return Object.assign({}, state, {
+        promoFilm: action.payload
       });
     default:
       return state;
