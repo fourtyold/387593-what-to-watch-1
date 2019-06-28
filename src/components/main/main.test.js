@@ -12,7 +12,11 @@ const options = {
   filmsShowNumber: 20,
   resetFilmsNumber: () => {},
   filmsArrayLength: 25,
-  increaseFilmsNumber: () => {}
+  increaseFilmsNumber: () => {},
+  promoFilm: {
+    backgroundImage: `bgImage`,
+    name: `string`
+  }
 };
 
 it(`Main correctly renders`, () => {
@@ -26,6 +30,7 @@ it(`Main correctly renders`, () => {
               resetFilmsNumber={options.resetFilmsNumber}
               filmsArrayLength={options.filmsArrayLength}
               increaseFilmsNumber={options.increaseFilmsNumber}
+              promoFilm={options.promoFilm}
             />
           </HashRouter>
         </Provider>
