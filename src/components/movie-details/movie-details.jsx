@@ -22,6 +22,7 @@ class MovieDetails extends React.PureComponent {
   render() {
     const {film, width, height} = this.props;
     const userBlock = this._getUserBlock();
+    const hidden = this.props.avatarUrl ? `` : `visually-hidden`;
     return <Fragment>
       <Header/>
       <section className="movie-card movie-card--full" style={{background: film.backgroundColor}}>
@@ -64,7 +65,7 @@ class MovieDetails extends React.PureComponent {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link to={`/reviews/add/${film.id}`} className={`btn movie-card__button ${hidden}`}>Add review</Link>
               </div>
             </div>
           </div>
