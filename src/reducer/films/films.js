@@ -5,7 +5,8 @@ const initialState = {
 
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
-  LOAD_PROMO: `LOAD_PROMO`
+  LOAD_PROMO: `LOAD_PROMO`,
+  CHANGE_FAVORITE: `CHANGE_FAVORITE`
 };
 
 const transformFilmsData = (films) => {
@@ -32,6 +33,18 @@ const transformFilmsData = (films) => {
   });
 };
 
+const handleFavoriteStatus = (state, film) => {
+  const filmsArray = state.fullFilmsList.slice();
+  for (let i = 0; i < filmsArray.length; i++) {
+    if (filmsArray[i].id === film.id) {
+      filmsArray[i] = film;
+      break;
+    }
+  }
+  const promo = state.promoFilm.id === film.id ? film : state.promoFilm;
+  return {filmsArray, promo};
+};
+
 const Operation = {
   loadFilms: () => (dispatch, _getState, api) => {
     return api.get(`/films`)
@@ -46,6 +59,14 @@ const Operation = {
         const transformedPromoData = transformFilmsData([response.data]);
         dispatch(ActionCreators.loadPromo(transformedPromoData[0]));
       });
+  },
+  addToFavorites: (data) => (dispatch, _getState, api) => {
+    const {id, favorite} = data;
+    const status = favorite ? 1 : 0;
+    return api.post(`favorite/${id}/${status}`).then((response) => {
+      const transformedFilmData = transformFilmsData([response.data]);
+      dispatch(ActionCreators.updateFavorite(transformedFilmData[0]));
+    });
   }
 };
 
@@ -61,6 +82,13 @@ const ActionCreators = {
       type: ActionType.LOAD_PROMO,
       payload: promo
     };
+  },
+  updateFavorite: (film) => {
+    return {
+      type: ActionType.CHANGE_FAVORITE,
+      payload: film,
+      handler: handleFavoriteStatus
+    };
   }
 };
 
@@ -73,6 +101,12 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_PROMO:
       return Object.assign({}, state, {
         promoFilm: action.payload
+      });
+    case ActionType.CHANGE_FAVORITE:
+      const updatedFilms = action.handler(state, action.payload);
+      return Object.assign({}, state, {
+        promoFilm: updatedFilms.promo,
+        fullFilmsList: updatedFilms.filmsArray
       });
     default:
       return state;

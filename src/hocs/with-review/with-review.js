@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {compose} from "recompose";
 import {Operation} from "../../reducer/user/user.js";
 
+import {getFilmById} from "../../reducer/films/selectors.js";
 import {REVIEW_LENGTH} from "../../constants.js";
 
 const withReview = (Component) => {
@@ -59,20 +60,24 @@ const withReview = (Component) => {
       this.props.sendReview({
         comment: this.state.review,
         rating: this.state.rating,
-        id: this.props.match.params.id
+        id: this.props.film.id
       });
     }
   }
 
   WithReview.propTypes = {
     sendReview: PropTypes.func.isRequired,
-    match: PropTypes.shape(PropTypes.shape({
+    film: PropTypes.shape({
       id: PropTypes.number.isRequired
-    }))
+    })
   };
 
   return WithReview;
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  film: getFilmById(state, ownProps)
+});
 
 const mapDispatchToProps = (dispatch) => ({
   sendReview: (review) => {
@@ -81,7 +86,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const composedWithReview = compose(
-    connect(null, mapDispatchToProps),
+    connect(mapStateToProps, mapDispatchToProps),
     withReview
 );
 

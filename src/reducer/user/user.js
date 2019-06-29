@@ -30,6 +30,12 @@ const Operation = {
     }).then(() => {
       history.push(`/film/${id}`);
     });
+  },
+  getLoginData: () => (dispatch, _getState, api) => {
+    return api.get(`/login`)
+      .then((response) => {
+        dispatch(ActionCreators.saveLoginData(response.data));
+      }).catch(() => {});
   }
 };
 
@@ -46,7 +52,6 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SAVE_LOGIN_DATA:
       return Object.assign({}, state, {
-        isAuthorizationRequired: false,
         id: action.payload.id,
         email: action.payload.email,
         name: action.payload.name,
