@@ -1,3 +1,5 @@
+import history from "../../history.js";
+
 const initialState = {
   id: null,
   email: null,
@@ -17,9 +19,18 @@ const Operation = {
       password
     }).then((response) => {
       dispatch(ActionCreators.saveLoginData(response.data));
-      history.back();
+      history.goBack();
     });
   },
+  postReview: (data) => (dispatch, _getState, api) => {
+    const {comment, id, rating} = data;
+    return api.post(`/comments/${id}`, {
+      comment,
+      rating
+    }).then(() => {
+      history.push(`/film/${id}`);
+    });
+  }
 };
 
 const ActionCreators = {

@@ -14,6 +14,21 @@ export const RatingTresholds = [
   {limit: 1000, value: `awesome`}
 ];
 
+export const API_CONFIG = {
+  baseURL: `https://es31-server.appspot.com/wtw`,
+  timeout: 5000,
+  withCredentials: true
+};
+
+export const SERVER_RESPONCES = {
+  FORBIDDEN: 403
+};
+
+export const REVIEW_LENGTH = {
+  MIN: 40,
+  MAX: 400
+};
+
 export const MINUTES_PER_HOUR = 60;
 
 export const HANDLER_DELAY = 1000;

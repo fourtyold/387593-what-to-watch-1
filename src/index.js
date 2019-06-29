@@ -4,7 +4,9 @@ import {Provider} from "react-redux";
 import {createStore, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
 import {compose} from "recompose";
-import {BrowserRouter} from "react-router-dom";
+import {Router} from "react-router-dom";
+// import {BrowserRouter} from "react-router-dom";
+import history from "./history.js";
 
 import App from "./components/app/app.jsx";
 import combineReducers from "./reducer/index.js";
@@ -23,9 +25,9 @@ const init = () => {
   store.dispatch(Operation.loadFilms());
   store.dispatch(Operation.loadPromo());
   ReactDOM.render(<Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <App/>
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.querySelector(`#root`)
   );
