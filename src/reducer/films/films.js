@@ -1,12 +1,16 @@
+
+
 const initialState = {
   fullFilmsList: [],
-  promoFilm: {}
+  promoFilm: {},
+  favorites: []
 };
 
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO: `LOAD_PROMO`,
-  CHANGE_FAVORITE: `CHANGE_FAVORITE`
+  CHANGE_FAVORITE: `CHANGE_FAVORITE`,
+  LOAD_FAVORITES: `LOAD_FAVORITES`
 };
 
 const transformFilmsData = (films) => {
@@ -67,6 +71,13 @@ const Operation = {
       const transformedFilmData = transformFilmsData([response.data]);
       dispatch(ActionCreators.updateFavorite(transformedFilmData[0]));
     });
+  },
+  getFavoritesList: () => (dispatch, _getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        const transformedFilmsData = transformFilmsData(response.data);
+        dispatch(ActionCreators.loadFavorites(transformedFilmsData));
+      });
   }
 };
 
@@ -89,6 +100,12 @@ const ActionCreators = {
       payload: film,
       handler: handleFavoriteStatus
     };
+  },
+  loadFavorites: (favorites) => {
+    return {
+      type: ActionType.LOAD_FAVORITES,
+      payload: favorites
+    };
   }
 };
 
@@ -107,6 +124,10 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         promoFilm: updatedFilms.promo,
         fullFilmsList: updatedFilms.filmsArray
+      });
+    case ActionType.LOAD_FAVORITES:
+      return Object.assign({}, state, {
+        favorites: action.payload
       });
     default:
       return state;

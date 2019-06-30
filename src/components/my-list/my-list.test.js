@@ -1,8 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {HashRouter} from "react-router-dom";
+import {createStore} from "redux";
+import {Provider} from "react-redux";
 
-import FilmsList from "./films-list.jsx";
+import {MyList} from "./my-list.jsx";
+import combineReducers from "../../reducer/index.js";
 
 const options = {
   films: [
@@ -32,13 +35,17 @@ function createNodeMock(element) {
   return null;
 }
 
-it(`Films list correctly renders`, () => {
+it(`Mylist correctly renders`, () => {
   const customMockCreator = {createNodeMock};
-  const tree = renderer.create(<HashRouter>
-    <FilmsList
-      films={options.films}
-    />
-  </HashRouter>, customMockCreator).toJSON();
+  const tree = renderer.create(
+      <Provider store={createStore(combineReducers)}>
+        <HashRouter>
+          <MyList
+            films={options.films}
+          />
+        </HashRouter>
+      </Provider>,
+      customMockCreator).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

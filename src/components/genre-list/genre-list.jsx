@@ -9,7 +9,8 @@ import {ActionCreators} from "../../reducer/filter/filter.js";
 const GenreList = (props) => {
   return <ul className="catalog__genres-list">
     {props.genresArray.map((genre, i) => {
-      return (<li key={`genre-${i}`} className={genre === props.activeItem ? `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`}>
+      return (<li key={`genre-${i}`} className={genre === props.activeItem || genre === `All genres` && !props.activeItem.length ?
+        `catalog__genres-item catalog__genres-item--active` : `catalog__genres-item`}>
         <a href="#" className="catalog__genres-link" onClick={() => {
           props.onSelect(genre);
           props.filterHandler(genre);

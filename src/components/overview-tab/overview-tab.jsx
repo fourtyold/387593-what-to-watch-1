@@ -26,7 +26,7 @@ const OverviewTab = (props) => {
       {film.description}
       <p className="movie-card__director"><strong>Director: {film.director}</strong></p>
       <p className="movie-card__starring"><strong>Starring: {film.starring.join(`, `)}</strong></p>
-    </div>;
+    </div>
   </Fragment>;
 };
 

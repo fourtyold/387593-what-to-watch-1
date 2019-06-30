@@ -91,7 +91,8 @@ it(`Data transform correctly`, () => {
 it(`Reducer return initial state`, () => {
   expect(reducer(undefined, {})).toEqual({
     fullFilmsList: [],
-    promoFilm: {}
+    promoFilm: {},
+    favorites: []
   });
 });
 

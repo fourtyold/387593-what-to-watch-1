@@ -88,6 +88,5 @@ exports[`Movie tabs correctly renders 1`] = `
       </strong>
     </p>
   </div>
-  ;
 </div>
 `;

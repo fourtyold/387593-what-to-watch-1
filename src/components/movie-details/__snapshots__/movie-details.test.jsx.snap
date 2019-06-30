@@ -176,16 +176,13 @@ Array [
         <div
           className="user-block"
         >
-          <div
-            className="user-block__avatar"
+          <a
+            className="user-block__link"
+            href="#/login"
+            onClick={[Function]}
           >
-            <img
-              alt="User avatar"
-              height="63"
-              src="https://es31-server.appspot.comsomeUrl"
-              width="63"
-            />
-          </div>
+            Sign in
+          </a>
         </div>
       </header>
       <div
@@ -362,7 +359,6 @@ Array [
               </strong>
             </p>
           </div>
-          ;
         </div>
       </div>
     </div>
