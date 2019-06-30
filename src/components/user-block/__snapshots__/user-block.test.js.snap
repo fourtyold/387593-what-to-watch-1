@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User block renders correctly 1`] = `
+<div
+  className="user-block__avatar"
+  onClick={[Function]}
+>
+  <a
+    href="#/mylist"
+    onClick={[Function]}
+  >
+    <img
+      alt="User avatar"
+      height="63"
+      src="https://es31-server.appspot.comavatar"
+      width="63"
+    />
+  </a>
+</div>
+`;

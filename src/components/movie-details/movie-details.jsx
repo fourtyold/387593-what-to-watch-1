@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
-import {getAvatarUrl} from "../../reducer/user/selectors.js";
 import {getFilmById} from "../../reducer/films/selectors.js";
 import {ActionCreators} from "../../reducer/filter/filter.js";
 import MovieTabs from "../movie-tabs/movie-tabs.jsx";
@@ -12,6 +11,9 @@ import FilmsList from "../films-list/films-list.jsx";
 import Header from "../header/header.jsx";
 import PlayButton from "../play-button/play-button.jsx";
 import MyListButton from "../my-list-button/my-list-button.jsx";
+import UserBlock from "../user-block/user-block.jsx";
+import {getFilteredFilmsList} from "../../reducer/films/selectors.js";
+import {getAvatarUrl} from "../../reducer/user/selectors.js";
 
 const WrappedMovieTabs = withActiveItem(MovieTabs);
 
@@ -21,8 +23,7 @@ class MovieDetails extends React.PureComponent {
   }
 
   render() {
-    const {film, width, height} = this.props;
-    const userBlock = this._getUserBlock();
+    const {film, width, height, films} = this.props;
     const hidden = this.props.avatarUrl ? `` : `visually-hidden`;
     return <Fragment>
       <Header/>
@@ -44,7 +45,7 @@ class MovieDetails extends React.PureComponent {
             </div>
 
             <div className="user-block">
-              {userBlock}
+              <UserBlock/>
             </div>
           </header>
 
@@ -87,6 +88,7 @@ class MovieDetails extends React.PureComponent {
           <div className="catalog__movies-list">
             <FilmsList
               id={film.id}
+              films={films}
               filmsShowNumber={4}
             />
           </div>
@@ -112,22 +114,9 @@ class MovieDetails extends React.PureComponent {
   componentDidMount() {
     this.props.changeFilterGenre(this.props.film.genre);
   }
-
-  _getUserBlock() {
-    if (this.props.avatarUrl) {
-      return <div className="user-block__avatar">
-        <img src={`https://es31-server.appspot.com${this.props.avatarUrl}`} alt="User avatar" width="63" height="63" />
-      </div>;
-    }
-    return <Link to="/login" className="user-block__link">Sign in</Link>;
-  }
 }
 
 MovieDetails.propTypes = {
-  avatarUrl: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object
-  ]),
   film: PropTypes.shape({
     name: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
@@ -139,9 +128,19 @@ MovieDetails.propTypes = {
     backgroundColor: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired
   }).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    previewImage: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    id: PropTypes.number.isRequired
+  })).isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-  changeFilterGenre: PropTypes.func.isRequired
+  changeFilterGenre: PropTypes.func.isRequired,
+  avatarUrl: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ])
 };
 
 MovieDetails.defaultProps = {
@@ -150,8 +149,9 @@ MovieDetails.defaultProps = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  avatarUrl: getAvatarUrl(state),
-  film: getFilmById(state, ownProps)
+  film: getFilmById(state, ownProps),
+  films: getFilteredFilmsList(state),
+  avatarUrl: getAvatarUrl(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

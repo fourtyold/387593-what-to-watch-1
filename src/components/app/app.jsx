@@ -3,7 +3,7 @@ import {Switch, Route} from "react-router-dom";
 
 import Main from "../main/main.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
-import Favorites from "../favorites/favorites.jsx";
+import MyList from "../my-list/my-list.jsx";
 import MovieDetails from "../movie-details/movie-details.jsx";
 import MoviePlayer from "../movie-player/movie-player.jsx";
 import AddReview from "../add-review/add-review.jsx";
@@ -14,7 +14,7 @@ import withMoviePlayer from "../../hocs/with-movie-player/with-movie-player.js";
 import withReview from "../../hocs/with-review/with-review.js";
 
 const WrappedSignIn = withActiveLogin(SignIn);
-const WrappedFavorites = withPrivateRoute(Favorites);
+const WrappedMyList = withPrivateRoute(MyList);
 const WrappedMain = withFilmsNumber(Main);
 const WrappedMoviePlayer = withMoviePlayer(MoviePlayer);
 const WrappedAddReview = withReview(AddReview);
@@ -26,7 +26,7 @@ const App = () => {
 
     <Route path="/login" component={WrappedSignIn}/>
 
-    <Route path="/favorites" component={WrappedFavorites}/>
+    <Route path="/mylist" component={WrappedMyList}/>
 
     <Route path="/film/:id" exact component={MovieDetails}/>
 

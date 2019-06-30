@@ -21,7 +21,25 @@ const options = {
     backgroundImage: `image`,
     starring: [`actor1`, `actor2`, `actor3`]
   },
-  changeFilterGenre: () => {}
+  changeFilterGenre: () => {},
+  films: [
+    {
+      id: 1,
+      name: `Moonrise Kingdom`,
+      page: `https://moonrise.html`,
+      genre: `Adventure`,
+      previewImage: `https://preview_1.jpg`,
+      previewVideoLink: `https://preview_1.mp4`
+    },
+    {
+      id: 1,
+      name: `Gangs of New York`,
+      page: `https://gangs.html`,
+      genre: `Crime`,
+      previewImage: `https://preview_2.jpg`,
+      previewVideoLink: `https://preview_2.mp4`,
+    }
+  ]
 };
 
 it(`Movie details correctly renders`, () => {
@@ -32,6 +50,7 @@ it(`Movie details correctly renders`, () => {
             film={options.film}
             avatarUrl={options.avatarUrl}
             changeFilterGenre={options.changeFilterGenre}
+            films={options.films}
           />
         </HashRouter>
       </Provider>

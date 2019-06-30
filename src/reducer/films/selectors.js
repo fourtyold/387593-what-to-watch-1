@@ -4,10 +4,14 @@ import {getFilterGenre} from "../filter/selectors.js";
 
 const NAMESPACE = NameSpaces.FILMS;
 
-const getFullFilmsList = (state, id) => {
-  if (id) {
-    return state[NAMESPACE].fullFilmsList.filter((film) => film.id !== id);
-  }
+// const getFullFilmsList = (state, id) => {
+//   if (id) {
+//     return state[NAMESPACE].fullFilmsList.filter((film) => film.id !== id);
+//   }
+//   return state[NAMESPACE].fullFilmsList;
+// };
+
+const getFullFilmsList = (state) => {
   return state[NAMESPACE].fullFilmsList;
 };
 
@@ -49,4 +53,6 @@ const getFilmById = (state, props) => {
 
 const getPromoFilm = (state) => state[NAMESPACE].promoFilm;
 
-export {getGenresList, getFilteredFilmsList, getFilmById, getFilteredFilmsLength, getPromoFilm};
+const getFavorites = (state) => state[NAMESPACE].favorites;
+
+export {getGenresList, getFilteredFilmsList, getFilmById, getFilteredFilmsLength, getPromoFilm, getFavorites};

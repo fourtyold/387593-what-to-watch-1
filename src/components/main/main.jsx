@@ -8,20 +8,14 @@ import GenreList from "../genre-list/genre-list.jsx";
 import ShowMore from "../show-more/show-more.jsx";
 import MoviePromo from "../movie-promo/movie-promo.jsx";
 import Header from "../header/header.jsx";
+import UserBlock from "../user-block/user-block.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import {getAvatarUrl} from "../../reducer/user/selectors.js";
-import {getFilteredFilmsLength, getPromoFilm} from "../../reducer/films/selectors.js";
+import {getFilteredFilmsLength, getPromoFilm, getFilteredFilmsList} from "../../reducer/films/selectors.js";
 
 const WrappedGenreList = withActiveItem(GenreList);
 
 const Main = (props) => {
   const {promoFilm} = props;
-
-  const userBlock = props.avatarUrl ?
-    <div className="user-block__avatar">
-      <img src={`https://es31-server.appspot.com${props.avatarUrl}`} alt="User avatar" width="63" height="63" />
-    </div> :
-    <Link to="/login" className="user-block__link">Sign in</Link>;
 
   const showMoreBlock = props.filmsShowNumber < props.filmsArrayLength ?
     <ShowMore increaseFilmsNumber={props.increaseFilmsNumber}/> : null;
@@ -45,7 +39,7 @@ const Main = (props) => {
           </Link>
         </div>
         <div className="user-block">
-          {userBlock}
+          <UserBlock/>
         </div>
       </header>
 
@@ -64,7 +58,9 @@ const Main = (props) => {
 
         <div className="catalog__movies-list">
           <FilmsList
+            id={promoFilm.id}
             filmsShowNumber={props.filmsShowNumber}
+            films={props.films}
           />
         </div>
         {showMoreBlock}
@@ -88,10 +84,16 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  avatarUrl: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object
-  ]),
+  // avatarUrl: PropTypes.oneOfType([
+  //   PropTypes.string,
+  //   PropTypes.object
+  // ]),
+  films: PropTypes.arrayOf(PropTypes.shape({
+    previewImage: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    id: PropTypes.number.isRequired
+  })).isRequired,
   filmsShowNumber: PropTypes.number.isRequired,
   resetFilmsNumber: PropTypes.func.isRequired,
   filmsArrayLength: PropTypes.number.isRequired,
@@ -103,9 +105,9 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  avatarUrl: getAvatarUrl(state),
   filmsArrayLength: getFilteredFilmsLength(state),
-  promoFilm: getPromoFilm(state)
+  promoFilm: getPromoFilm(state),
+  films: getFilteredFilmsList(state)
 });
 
 export {Main};

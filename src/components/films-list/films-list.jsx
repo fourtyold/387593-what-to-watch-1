@@ -1,16 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
 
 import FilmCard from "../film-card/film-card.jsx";
 import withActiveCard from "../../hocs/with-active-card/with-active-card.js";
-import {getFilteredFilmsList} from "../../reducer/films/selectors.js";
 
 const WrappedActiveCard = withActiveCard(FilmCard);
 
 const FilmsList = (props) => {
   const filmsNumberLimit = props.filmsShowNumber || props.films.length;
-  const renderFilmsArray = props.films.filter((film, i) => i < filmsNumberLimit);
+  const renderFilmsArray = props.films.filter((film, i) => i < filmsNumberLimit && film.id !== props.id);
   return renderFilmsArray.map((film, i) => {
     return <WrappedActiveCard
       film={film}
@@ -29,10 +27,4 @@ FilmsList.propTypes = {
   filmsShowNumber: PropTypes.number
 };
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  films: getFilteredFilmsList(state, ownProps.id),
-});
-
-export {FilmsList};
-
-export default connect(mapStateToProps)(FilmsList);
+export default FilmsList;

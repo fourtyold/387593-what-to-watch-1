@@ -39,7 +39,7 @@ const DetailsTab = (props) => {
           <span className="movie-card__details-value">{film.released}</span>
         </p>
       </div>
-    </div>;
+    </div>
   </Fragment>;
 };
 
